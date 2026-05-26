@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GetPhab | India's Tastiest Protein — Cheat Without Guilt</title>
+    <title>Phab | India's Tastiest Protein — Cheat Without Guilt</title>
     <meta name="description" content="India's highest protein, lowest calorie bars and milkshakes. Zero added sugar. No artificial sweeteners. Just pure indulgence.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,6 +51,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
+        body { cursor: default; }
 
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #0A1A1A; }
@@ -140,7 +141,7 @@
             display: flex; align-items: center; justify-content: center;
             transition: opacity 0.8s ease, visibility 0.8s;
         }
-        .loader.hidden { opacity: 0; visibility: hidden; }
+        .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
         .loader-text {
             font-family: 'Outfit', sans-serif; font-size: 4rem; font-weight: 900;
             color: #1BA3A3; letter-spacing: -0.02em;
@@ -177,6 +178,15 @@
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
+        /* Smooth loading */
+        .page-content {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .page-content.loaded {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-phab-dark text-white font-outfit overflow-x-hidden selection:bg-phab-teal selection:text-phab-dark">
@@ -186,22 +196,19 @@
     <!-- Loading Screen -->
     <div class="loader" id="loader">
         <div class="text-center">
-            <img src="https://raw.githubusercontent.com/gaur3009-p/herbistwell/main/559736553_18139090813447474_718169654251258735_n.jpg" 
-                 alt="Phab Logo" class="w-24 h-24 mx-auto mb-6 rounded-2xl animate-pulse">
-            <div class="loader-text">phab</div>
-            <div class="w-48 h-1 bg-gray-800 rounded-full overflow-hidden mx-auto mt-4">
+            <div class="loader-text mb-4">phab</div>
+            <div class="w-48 h-1 bg-gray-800 rounded-full overflow-hidden mx-auto">
                 <div class="h-full bg-phab-teal rounded-full shimmer" id="loader-bar" style="width: 0%"></div>
             </div>
         </div>
     </div>
 
+    <div class="page-content" id="page-content">
     <!-- Navigation -->
     <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-4 px-6 lg:px-12">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <a href="#" class="flex items-center gap-3 group">
-                <img src="https://raw.githubusercontent.com/gaur3009-p/herbistwell/main/559736553_18139090813447474_718169654251258735_n.jpg" 
-                     alt="Phab Logo" class="w-10 h-10 rounded-xl object-cover group-hover:scale-110 transition-transform">
-                <span class="text-2xl font-bold tracking-tight hidden sm:block">phab</span>
+                <span class="text-2xl font-bold tracking-tight">phab</span>
             </a>
 
             <div class="hidden lg:flex items-center gap-8">
@@ -260,6 +267,7 @@
         </div>
     </div>
     <div id="cart-overlay" class="fixed inset-0 bg-black/50 z-[55] hidden" onclick="toggleCart()"></div>
+
     <!-- Hero Section -->
     <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 hero-gradient">
         <div class="blob w-96 h-96 bg-phab-teal/20 top-20 -left-20"></div>
@@ -317,10 +325,10 @@
                 <div class="flavor-orb top-1/4 left-1/4"></div>
                 <div class="flavor-orb bottom-1/4 right-1/4 bg-phab-coral/20" style="animation-delay: -3s;"></div>
                 
-                <img src="https://www.getphab.com/cdn/shop/files/phab-cheat-chocolate-hazelnut.png?v=1700000000" 
+                <img src="https://kimi-web-img.moonshot.cn/img/www.getphab.com/dfd6b7b9f25ee820c121eda37888660b936b00f0.jpg" 
                      alt="Phab Cheat Bar" 
-                     class="relative z-10 w-full max-w-md animate-float drop-shadow-2xl product-img"
-                     onerror="this.src='https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=600&h=800&fit=crop'">
+                     class="relative z-10 w-full max-w-md animate-float drop-shadow-2xl product-img rounded-2xl"
+                     onerror="this.style.display='none'">
                 
                 <div class="absolute top-10 right-10 nutrition-badge px-4 py-2 rounded-2xl animate-float-delay">
                     <div class="text-xs text-gray-400">Protein</div>
@@ -362,6 +370,7 @@
             <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">&#9670;</span>
         </div>
     </section>
+
     <!-- Products Section -->
     <section id="products" class="py-24 relative">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
@@ -385,9 +394,9 @@
                     <div class="absolute top-4 right-4 bg-phab-coral text-white text-xs font-bold px-3 py-1 rounded-full z-20">BESTSELLER</div>
                     <div class="h-64 flex items-center justify-center mb-6 relative">
                         <div class="absolute inset-0 bg-phab-teal/5 rounded-full blur-3xl group-hover:bg-phab-teal/10 transition-all"></div>
-                        <img src="https://www.getphab.com/cdn/shop/files/cheat-chocolate-hazelnut.png?v=1700000000" 
-                             alt="Chocolate Hazelnut" class="product-img h-56 object-contain relative z-10"
-                             onerror="this.src='https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=400&h=400&fit=crop'">
+                        <img src="https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/db16e3cf7c136b8bca47a644e0c95f9f947c3b42.jpg" 
+                             alt="Chocolate Hazelnut" class="product-img h-56 object-contain relative z-10 rounded-xl"
+                             onerror="this.style.display='none'">
                     </div>
                     <div class="space-y-3">
                         <div class="flex items-center gap-2">
@@ -405,7 +414,7 @@
                         </div>
                         <div class="flex items-center justify-between pt-4">
                             <div class="text-2xl font-bold">Rs.99</div>
-                            <button onclick="addToCart('Chocolate Hazelnut Cheat Bar', 99, 'https://www.getphab.com/cdn/shop/files/cheat-chocolate-hazelnut.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
+                            <button onclick="addToCart('Chocolate Hazelnut Cheat Bar', 99, 'https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/db16e3cf7c136b8bca47a644e0c95f9f947c3b42.jpg')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
                                 Add to Cart <i data-lucide="plus" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -415,9 +424,9 @@
                 <div class="product-card group relative bg-gradient-to-b from-gray-900 to-gray-950 rounded-3xl p-6 border border-gray-800 hover:border-phab-teal/50 overflow-hidden" data-category="cheat">
                     <div class="h-64 flex items-center justify-center mb-6 relative">
                         <div class="absolute inset-0 bg-phab-cyan/5 rounded-full blur-3xl group-hover:bg-phab-cyan/10 transition-all"></div>
-                        <img src="https://www.getphab.com/cdn/shop/files/cheat-blueberry-cheesecake.png?v=1700000000" 
-                             alt="Blueberry Cheesecake" class="product-img h-56 object-contain relative z-10"
-                             onerror="this.src='https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=400&fit=crop'">
+                        <img src="https://kimi-web-img.moonshot.cn/img/www.getphab.com/ef462acbff1fb260a75e23a11bbba36ba9fb3602.jpg" 
+                             alt="Blueberry Cheesecake" class="product-img h-56 object-contain relative z-10 rounded-xl"
+                             onerror="this.style.display='none'">
                     </div>
                     <div class="space-y-3">
                         <div class="flex items-center gap-2">
@@ -435,7 +444,7 @@
                         </div>
                         <div class="flex items-center justify-between pt-4">
                             <div class="text-2xl font-bold">Rs.99</div>
-                            <button onclick="addToCart('Blueberry Cheesecake Cheat Bar', 99, 'https://www.getphab.com/cdn/shop/files/cheat-blueberry-cheesecake.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
+                            <button onclick="addToCart('Blueberry Cheesecake Cheat Bar', 99, 'https://kimi-web-img.moonshot.cn/img/www.getphab.com/ef462acbff1fb260a75e23a11bbba36ba9fb3602.jpg')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
                                 Add to Cart <i data-lucide="plus" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -445,9 +454,9 @@
                 <div class="product-card group relative bg-gradient-to-b from-gray-900 to-gray-950 rounded-3xl p-6 border border-gray-800 hover:border-phab-teal/50 overflow-hidden" data-category="cheat">
                     <div class="h-64 flex items-center justify-center mb-6 relative">
                         <div class="absolute inset-0 bg-yellow-500/5 rounded-full blur-3xl group-hover:bg-yellow-500/10 transition-all"></div>
-                        <img src="https://www.getphab.com/cdn/shop/files/cheat-chocolate-peanut-butter.png?v=1700000000" 
-                             alt="Chocolate Peanut Butter" class="product-img h-56 object-contain relative z-10"
-                             onerror="this.src='https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=400&h=400&fit=crop'">
+                        <img src="https://kimi-web-img.moonshot.cn/img/www.getphab.com/dfd6b7b9f25ee820c121eda37888660b936b00f0.jpg" 
+                             alt="Chocolate Peanut Butter" class="product-img h-56 object-contain relative z-10 rounded-xl"
+                             onerror="this.style.display='none'">
                     </div>
                     <div class="space-y-3">
                         <div class="flex items-center gap-2">
@@ -465,7 +474,7 @@
                         </div>
                         <div class="flex items-center justify-between pt-4">
                             <div class="text-2xl font-bold">Rs.99</div>
-                            <button onclick="addToCart('Chocolate Peanut Butter Cheat Bar', 99, 'https://www.getphab.com/cdn/shop/files/cheat-chocolate-peanut-butter.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
+                            <button onclick="addToCart('Chocolate Peanut Butter Cheat Bar', 99, 'https://kimi-web-img.moonshot.cn/img/www.getphab.com/dfd6b7b9f25ee820c121eda37888660b936b00f0.jpg')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
                                 Add to Cart <i data-lucide="plus" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -476,9 +485,9 @@
                 <div class="product-card group relative bg-gradient-to-b from-gray-900 to-gray-950 rounded-3xl p-6 border border-gray-800 hover:border-phab-teal/50 overflow-hidden" data-category="protein">
                     <div class="h-64 flex items-center justify-center mb-6 relative">
                         <div class="absolute inset-0 bg-phab-teal/5 rounded-full blur-3xl group-hover:bg-phab-teal/10 transition-all"></div>
-                        <img src="https://www.getphab.com/cdn/shop/files/protein-mocha-nut-fudge.png?v=1700000000" 
-                             alt="Mocha Nut Fudge" class="product-img h-56 object-contain relative z-10"
-                             onerror="this.src='https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&h=400&fit=crop'">
+                        <img src="https://kimi-web-img.moonshot.cn/img/www.getphab.com/628cf6f9697630de7c191db8e1eb5f478c606eac.png" 
+                             alt="Mocha Nut Fudge" class="product-img h-56 object-contain relative z-10 rounded-xl"
+                             onerror="this.style.display='none'">
                     </div>
                     <div class="space-y-3">
                         <div class="flex items-center gap-2">
@@ -496,7 +505,7 @@
                         </div>
                         <div class="flex items-center justify-between pt-4">
                             <div class="text-2xl font-bold">Rs.75</div>
-                            <button onclick="addToCart('Mocha Nut Fudge Protein Bar', 75, 'https://www.getphab.com/cdn/shop/files/protein-mocha-nut-fudge.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
+                            <button onclick="addToCart('Mocha Nut Fudge Protein Bar', 75, 'https://kimi-web-img.moonshot.cn/img/www.getphab.com/628cf6f9697630de7c191db8e1eb5f478c606eac.png')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
                                 Add to Cart <i data-lucide="plus" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -507,9 +516,9 @@
                     <div class="absolute top-4 right-4 bg-phab-gold text-phab-dark text-xs font-bold px-3 py-1 rounded-full z-20">SOLD OUT</div>
                     <div class="h-64 flex items-center justify-center mb-6 relative opacity-70">
                         <div class="absolute inset-0 bg-pink-500/5 rounded-full blur-3xl"></div>
-                        <img src="https://www.getphab.com/cdn/shop/files/protein-choco-berry-crunch.png?v=1700000000" 
-                             alt="Choco Berry Crunch" class="product-img h-56 object-contain relative z-10"
-                             onerror="this.src='https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=400&fit=crop'">
+                        <img src="https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/bcb33d7a29e65dfa63ed7df773184394b5e366db.jpg" 
+                             alt="Choco Berry Crunch" class="product-img h-56 object-contain relative z-10 rounded-xl"
+                             onerror="this.style.display='none'">
                     </div>
                     <div class="space-y-3">
                         <div class="flex items-center gap-2">
@@ -536,9 +545,9 @@
                 <div class="product-card group relative bg-gradient-to-b from-gray-900 to-gray-950 rounded-3xl p-6 border border-gray-800 hover:border-phab-teal/50 overflow-hidden" data-category="milkshake">
                     <div class="h-64 flex items-center justify-center mb-6 relative">
                         <div class="absolute inset-0 bg-pink-500/5 rounded-full blur-3xl group-hover:bg-pink-500/10 transition-all"></div>
-                        <img src="https://www.getphab.com/cdn/shop/files/milkshake-strawberries-cream.png?v=1700000000" 
-                             alt="Strawberries & Cream" class="product-img h-56 object-contain relative z-10"
-                             onerror="this.src='https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=400&fit=crop'">
+                        <img src="https://kimi-web-img.moonshot.cn/img/www.getphab.com/92994357de82c17504fb3ceb391a983908e28288.jpg" 
+                             alt="Strawberries & Cream" class="product-img h-56 object-contain relative z-10 rounded-xl"
+                             onerror="this.style.display='none'">
                     </div>
                     <div class="space-y-3">
                         <div class="flex items-center gap-2">
@@ -556,7 +565,7 @@
                         </div>
                         <div class="flex items-center justify-between pt-4">
                             <div class="text-2xl font-bold">Rs.99</div>
-                            <button onclick="addToCart('Strawberries & Cream Milkshake', 99, 'https://www.getphab.com/cdn/shop/files/milkshake-strawberries-cream.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
+                            <button onclick="addToCart('Strawberries & Cream Milkshake', 99, 'https://kimi-web-img.moonshot.cn/img/www.getphab.com/92994357de82c17504fb3ceb391a983908e28288.jpg')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
                                 Add to Cart <i data-lucide="plus" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -566,9 +575,9 @@
                 <div class="product-card group relative bg-gradient-to-b from-gray-900 to-gray-950 rounded-3xl p-6 border border-gray-800 hover:border-phab-teal/50 overflow-hidden" data-category="milkshake">
                     <div class="h-64 flex items-center justify-center mb-6 relative">
                         <div class="absolute inset-0 bg-amber-500/5 rounded-full blur-3xl group-hover:bg-amber-500/10 transition-all"></div>
-                        <img src="https://www.getphab.com/cdn/shop/files/milkshake-coffee-tiramisu.png?v=1700000000" 
-                             alt="Coffee Tiramisu" class="product-img h-56 object-contain relative z-10"
-                             onerror="this.src='https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=400&fit=crop'">
+                        <img src="https://kimi-web-img.moonshot.cn/img/rukminim2.flixcart.com/349833346daad2b179f8057a3118895568ff9334.jpeg" 
+                             alt="Coffee Tiramisu" class="product-img h-56 object-contain relative z-10 rounded-xl"
+                             onerror="this.style.display='none'">
                     </div>
                     <div class="space-y-3">
                         <div class="flex items-center gap-2">
@@ -586,7 +595,7 @@
                         </div>
                         <div class="flex items-center justify-between pt-4">
                             <div class="text-2xl font-bold">Rs.85</div>
-                            <button onclick="addToCart('Coffee Tiramisu Milkshake', 85, 'https://www.getphab.com/cdn/shop/files/milkshake-coffee-tiramisu.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
+                            <button onclick="addToCart('Coffee Tiramisu Milkshake', 85, 'https://kimi-web-img.moonshot.cn/img/rukminim2.flixcart.com/349833346daad2b179f8057a3118895568ff9334.jpeg')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
                                 Add to Cart <i data-lucide="plus" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -597,9 +606,9 @@
                 <div class="product-card group relative bg-gradient-to-b from-gray-900 to-gray-950 rounded-3xl p-6 border border-gray-800 hover:border-phab-teal/50 overflow-hidden" data-category="wafer">
                     <div class="h-64 flex items-center justify-center mb-6 relative">
                         <div class="absolute inset-0 bg-purple-500/5 rounded-full blur-3xl group-hover:bg-purple-500/10 transition-all"></div>
-                        <img src="https://www.getphab.com/cdn/shop/files/wafer-cookies-cream.png?v=1700000000" 
-                             alt="Cookies & Cream Wafer" class="product-img h-56 object-contain relative z-10"
-                             onerror="this.src='https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=400&fit=crop'">
+                        <img src="https://kimi-web-img.moonshot.cn/img/www.getphab.com/bde3bbe1f257fb4db9e321f4b2b9deed6d94335b.jpg" 
+                             alt="Cookies & Cream Wafer" class="product-img h-56 object-contain relative z-10 rounded-xl"
+                             onerror="this.style.display='none'">
                     </div>
                     <div class="space-y-3">
                         <div class="flex items-center gap-2">
@@ -617,7 +626,7 @@
                         </div>
                         <div class="flex items-center justify-between pt-4">
                             <div class="text-2xl font-bold">Rs.60</div>
-                            <button onclick="addToCart('Cookies & Cream Wafer', 60, 'https://www.getphab.com/cdn/shop/files/wafer-cookies-cream.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
+                            <button onclick="addToCart('Cookies & Cream Wafer', 60, 'https://kimi-web-img.moonshot.cn/img/www.getphab.com/bde3bbe1f257fb4db9e321f4b2b9deed6d94335b.jpg')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
                                 Add to Cart <i data-lucide="plus" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -627,9 +636,9 @@
                 <div class="product-card group relative bg-gradient-to-b from-gray-900 to-gray-950 rounded-3xl p-6 border border-gray-800 hover:border-phab-teal/50 overflow-hidden" data-category="wafer">
                     <div class="h-64 flex items-center justify-center mb-6 relative">
                         <div class="absolute inset-0 bg-pink-400/5 rounded-full blur-3xl group-hover:bg-pink-400/10 transition-all"></div>
-                        <img src="https://www.getphab.com/cdn/shop/files/wafer-strawberry-cake.png?v=1700000000" 
-                             alt="Strawberry Cake Wafer" class="product-img h-56 object-contain relative z-10"
-                             onerror="this.src='https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400&h=400&fit=crop'">
+                        <img src="https://kimi-web-img.moonshot.cn/img/www.getphab.com/71651853c6505af1a092f5336e70a1ba7c4c4792.jpg" 
+                             alt="Strawberry Cake Wafer" class="product-img h-56 object-contain relative z-10 rounded-xl"
+                             onerror="this.style.display='none'">
                     </div>
                     <div class="space-y-3">
                         <div class="flex items-center gap-2">
@@ -647,7 +656,7 @@
                         </div>
                         <div class="flex items-center justify-between pt-4">
                             <div class="text-2xl font-bold">Rs.60</div>
-                            <button onclick="addToCart('Strawberry Cake Wafer', 60, 'https://www.getphab.com/cdn/shop/files/wafer-strawberry-cream.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
+                            <button onclick="addToCart('Strawberry Cake Wafer', 60, 'https://kimi-web-img.moonshot.cn/img/www.getphab.com/71651853c6505af1a092f5336e70a1ba7c4c4792.jpg')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
                                 Add to Cart <i data-lucide="plus" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -656,6 +665,7 @@
             </div>
         </div>
     </section>
+
     <!-- Brand Story Section -->
     <section id="story" class="py-24 relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-r from-phab-teal/5 to-transparent"></div>
@@ -841,7 +851,7 @@
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-phab-coral/20 rounded-full flex items-center justify-center text-phab-coral font-bold">R</div>
                         <div>
-                            <div class="font-semibold text-sm">Rahul Mehta</div>
+                            <div class="font-semibold text-sm">Rohit Mehta</div>
                             <div class="text-xs text-gray-500">Verified Buyer</div>
                         </div>
                     </div>
@@ -855,278 +865,359 @@
                         <i data-lucide="star" class="w-5 h-5 text-phab-gold fill-current"></i>
                         <i data-lucide="star" class="w-5 h-5 text-phab-gold fill-current"></i>
                     </div>
-                    <p class="text-gray-300 mb-6 leading-relaxed">"The millet wafers are my go-to pre-workout. Light, crunchy, and 10g protein without the bloat. Strawberry Cake flavor is addictive!"</p>
+                    <p class="text-gray-300 mb-6 leading-relaxed">"The Cookies & Cream wafer is my go-to pre-workout snack. 10g protein, zero sugar, and it actually tastes like a real wafer. Phab nailed it."</p>
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-purple-500/20 rounded-full flex items-center justify-center text-purple-400 font-bold">P</div>
+                        <div class="w-10 h-10 bg-purple-500/20 rounded-full flex items-center justify-center text-purple-400 font-bold">K</div>
                         <div>
-                            <div class="font-semibold text-sm">Priya Nair</div>
-                            <div class="text-xs text-gray-500">Yoga Instructor</div>
+                            <div class="font-semibold text-sm">Karan Patel</div>
+                            <div class="text-xs text-gray-500">Gym Regular</div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="mt-12 text-center reveal-section">
+                <div class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-phab-teal/10 border border-phab-teal/20 text-phab-teal font-semibold">
+                    <i data-lucide="shield-check" class="w-5 h-5"></i>
+                    4.8/5 Average Rating — 50,000+ Reviews
+                </div>
+            </div>
         </div>
     </section>
+
     <!-- CTA Section -->
     <section class="py-24 relative overflow-hidden">
-        <div class="absolute inset-0 bg-phab-teal/10"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-phab-teal/20 via-transparent to-transparent"></div>
-        
-        <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal-section">
-            <h2 class="text-5xl md:text-7xl font-black mb-6">Ready to <span class="liquid-text">Cheat Clean?</span></h2>
-            <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">Join 50,000+ Indians who have made the switch. Free shipping on orders above Rs.499.</p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://www.getphab.com/collections/all" target="_blank" class="px-10 py-5 bg-phab-teal text-phab-dark rounded-full font-bold text-xl hover:bg-phab-cyan transition-all btn-pulse inline-flex items-center justify-center gap-3">
-                    Shop All Products
-                    <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
-                </a>
-                <button onclick="openWhatsApp()" class="px-10 py-5 border-2 border-phab-teal text-phab-teal rounded-full font-bold text-xl hover:bg-phab-teal hover:text-phab-dark transition-all inline-flex items-center justify-center gap-3">
-                    <i data-lucide="message-circle" class="w-6 h-6"></i>
-                    WhatsApp Order
-                </button>
-            </div>
-
-            <div class="flex items-center justify-center gap-8 mt-12 text-sm text-gray-500 flex-wrap">
-                <div class="flex items-center gap-2">
-                    <i data-lucide="truck" class="w-4 h-4"></i>
-                    Free Shipping Rs.499+
+        <div class="absolute inset-0 bg-gradient-to-br from-phab-teal/10 via-transparent to-phab-coral/5"></div>
+        <div class="max-w-5xl mx-auto px-6 lg:px-12 text-center relative z-10">
+            <div class="reveal-section">
+                <h2 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6">
+                    Ready to <span class="liquid-text">Cheat</span><br>
+                    <span class="text-white">Without Guilt?</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
+                    Join 50,000+ Indians who have made the switch. Free shipping on orders above Rs.499.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="scrollToProducts()" class="px-10 py-5 bg-phab-teal text-phab-dark rounded-full font-bold text-lg hover:bg-phab-cyan transition-all btn-pulse inline-flex items-center justify-center gap-2">
+                        Shop Now
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </button>
+                    <a href="https://www.getphab.com" target="_blank" class="px-10 py-5 border border-white/20 rounded-full font-semibold hover:bg-white/10 transition-all inline-flex items-center justify-center gap-2">
+                        Visit Official Store
+                        <i data-lucide="external-link" class="w-5 h-5"></i>
+                    </a>
                 </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="shield-check" class="w-4 h-4"></i>
-                    100% Authentic
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="refresh-cw" class="w-4 h-4"></i>
-                    Easy Returns
-                </div>
-                <div class="flex items-center gap-2">
-                    <i data-lucide="leaf" class="w-4 h-4"></i>
-                    No Artificial Sweeteners
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Instagram Feed Section -->
-    <section class="py-16 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="text-center mb-12 reveal-section">
-                <span class="text-phab-teal font-semibold text-sm uppercase tracking-widest">@getphab</span>
-                <h2 class="text-3xl md:text-4xl font-black mt-3">Follow the <span class="liquid-text">Movement</span></h2>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 reveal-section">
-                <a href="https://instagram.com/getphab" target="_blank" class="aspect-square rounded-2xl overflow-hidden bg-gray-900 border border-gray-800 hover:border-phab-teal/50 transition-all group relative">
-                    <img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300&h=300&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Phab Product">
-                    <div class="absolute inset-0 bg-phab-teal/0 group-hover:bg-phab-teal/20 transition-all flex items-center justify-center">
-                        <i data-lucide="instagram" class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                </a>
-                <a href="https://instagram.com/getphab" target="_blank" class="aspect-square rounded-2xl overflow-hidden bg-gray-900 border border-gray-800 hover:border-phab-teal/50 transition-all group relative">
-                    <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=300&h=300&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Phab Shake">
-                    <div class="absolute inset-0 bg-phab-teal/0 group-hover:bg-phab-teal/20 transition-all flex items-center justify-center">
-                        <i data-lucide="instagram" class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                </a>
-                <a href="https://instagram.com/getphab" target="_blank" class="aspect-square rounded-2xl overflow-hidden bg-gray-900 border border-gray-800 hover:border-phab-teal/50 transition-all group relative">
-                    <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=300&h=300&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Phab Wafer">
-                    <div class="absolute inset-0 bg-phab-teal/0 group-hover:bg-phab-teal/20 transition-all flex items-center justify-center">
-                        <i data-lucide="instagram" class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                </a>
-                <a href="https://instagram.com/getphab" target="_blank" class="aspect-square rounded-2xl overflow-hidden bg-gray-900 border border-gray-800 hover:border-phab-teal/50 transition-all group relative">
-                    <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=300&h=300&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Phab Bar">
-                    <div class="absolute inset-0 bg-phab-teal/0 group-hover:bg-phab-teal/20 transition-all flex items-center justify-center">
-                        <i data-lucide="instagram" class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                </a>
-                <a href="https://instagram.com/getphab" target="_blank" class="aspect-square rounded-2xl overflow-hidden bg-gray-900 border border-gray-800 hover:border-phab-teal/50 transition-all group relative">
-                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=300&h=300&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Phab Berry">
-                    <div class="absolute inset-0 bg-phab-teal/0 group-hover:bg-phab-teal/20 transition-all flex items-center justify-center">
-                        <i data-lucide="instagram" class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                </a>
-                <a href="https://instagram.com/getphab" target="_blank" class="aspect-square rounded-2xl overflow-hidden bg-gray-900 border border-gray-800 hover:border-phab-teal/50 transition-all group relative">
-                    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=300&h=300&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Phab Coffee">
-                    <div class="absolute inset-0 bg-phab-teal/0 group-hover:bg-phab-teal/20 transition-all flex items-center justify-center">
-                        <i data-lucide="instagram" class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                    </div>
-                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-800 pt-16 pb-8 bg-gradient-to-b from-phab-dark to-gray-950">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="grid md:grid-cols-4 gap-12 mb-12">
-                <div class="md:col-span-1">
-                    <div class="flex items-center gap-3 mb-6">
-                        <img src="https://raw.githubusercontent.com/gaur3009-p/herbistwell/main/559736553_18139090813447474_718169654251258735_n.jpg" 
-                             alt="Phab Logo" class="w-10 h-10 rounded-xl object-cover">
-                        <span class="text-2xl font-bold">phab</span>
-                    </div>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Indias tastiest protein. Built with nostalgia, backed by science. Founded by Gayatri Chona.</p>
-                    <div class="flex gap-3">
-                        <a href="https://instagram.com/getphab" target="_blank" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-phab-teal hover:text-phab-dark transition-all">
+    <footer class="border-t border-gray-800 bg-phab-dark/50 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16">
+            <div class="grid md:grid-cols-4 gap-12">
+                <div class="md:col-span-2">
+                    <div class="text-3xl font-black mb-4">phab</div>
+                    <p class="text-gray-400 max-w-md mb-6">
+                        India's tastiest protein. Built with passion, crafted with nostalgia, and designed for the health-conscious Indian who refuses to compromise on taste.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-phab-teal hover:text-phab-dark transition-all">
                             <i data-lucide="instagram" class="w-5 h-5"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-phab-teal hover:text-phab-dark transition-all">
-                            <i data-lucide="youtube" class="w-5 h-5"></i>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-phab-teal hover:text-phab-dark transition-all">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-phab-teal hover:text-phab-dark transition-all">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-phab-teal hover:text-phab-dark transition-all">
                             <i data-lucide="facebook" class="w-5 h-5"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-phab-teal hover:text-phab-dark transition-all">
-                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-phab-teal hover:text-phab-dark transition-all">
+                            <i data-lucide="youtube" class="w-5 h-5"></i>
                         </a>
                     </div>
                 </div>
 
                 <div>
-                    <h4 class="font-bold mb-6 text-lg">Shop</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
-                        <li><a href="https://www.getphab.com/collections/cheat-bars" target="_blank" class="hover:text-phab-teal transition-colors">Cheat Bars</a></li>
-                        <li><a href="https://www.getphab.com/collections/protein-bars" target="_blank" class="hover:text-phab-teal transition-colors">Protein Bars</a></li>
-                        <li><a href="https://www.getphab.com/collections/protein-milkshake" target="_blank" class="hover:text-phab-teal transition-colors">Milkshakes</a></li>
-                        <li><a href="https://www.getphab.com/collections/millet-wafers" target="_blank" class="hover:text-phab-teal transition-colors">Millet Wafers</a></li>
-                        <li><a href="https://www.getphab.com/collections/all" target="_blank" class="hover:text-phab-teal transition-colors">All Products</a></li>
+                    <h4 class="font-bold mb-4 text-white">Products</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#products" class="hover:text-phab-teal transition-colors">Cheat Bars</a></li>
+                        <li><a href="#products" class="hover:text-phab-teal transition-colors">Protein Bars</a></li>
+                        <li><a href="#products" class="hover:text-phab-teal transition-colors">Milkshakes</a></li>
+                        <li><a href="#products" class="hover:text-phab-teal transition-colors">Wafers</a></li>
+                        <li><a href="#products" class="hover:text-phab-teal transition-colors">Pocket Protein</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="font-bold mb-6 text-lg">Company</h4>
-                    <ul class="space-y-3 text-sm text-gray-400">
+                    <h4 class="font-bold mb-4 text-white">Company</h4>
+                    <ul class="space-y-3 text-gray-400">
                         <li><a href="#story" class="hover:text-phab-teal transition-colors">Our Story</a></li>
-                        <li><a href="#" class="hover:text-phab-teal transition-colors">Ingredients</a></li>
-                        <li><a href="#" class="hover:text-phab-teal transition-colors">Sustainability</a></li>
+                        <li><a href="#nutrition" class="hover:text-phab-teal transition-colors">Why Phab?</a></li>
+                        <li><a href="#" class="hover:text-phab-teal transition-colors">Blog</a></li>
                         <li><a href="#" class="hover:text-phab-teal transition-colors">Careers</a></li>
-                        <li><a href="https://www.getphab.com/pages/contact" target="_blank" class="hover:text-phab-teal transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-phab-teal transition-colors">Contact</a></li>
                     </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-bold mb-6 text-lg">Stay Updated</h4>
-                    <p class="text-gray-400 text-sm mb-4">Get exclusive offers and new flavor drops.</p>
-                    <form onsubmit="handleSubscribe(event)" class="flex gap-2">
-                        <input type="email" placeholder="Enter your email" required
-                               class="flex-1 px-4 py-3 rounded-xl bg-gray-900 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-phab-teal transition-colors text-sm">
-                        <button type="submit" class="px-4 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all">
-                            <i data-lucide="send" class="w-5 h-5"></i>
-                        </button>
-                    </form>
-                    <div class="mt-6 space-y-2 text-sm text-gray-500">
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="mail" class="w-4 h-4"></i>
-                            care@getphab.com
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <i data-lucide="phone" class="w-4 h-4"></i>
-                            +91 9099667422
-                        </div>
-                    </div>
                 </div>
             </div>
 
-            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-sm text-gray-500">2026 Phab Nutrition Pvt. Ltd. All rights reserved.</p>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="text-gray-500 text-sm">
+                    &copy; 2026 Phab Nutrition Pvt. Ltd. All rights reserved.
+                </div>
                 <div class="flex gap-6 text-sm text-gray-500">
-                    <a href="https://www.getphab.com/pages/privacy-policy" target="_blank" class="hover:text-phab-teal transition-colors">Privacy Policy</a>
-                    <a href="https://www.getphab.com/pages/terms-and-conditions" target="_blank" class="hover:text-phab-teal transition-colors">Terms</a>
-                    <a href="https://www.getphab.com/pages/shipping-delivery" target="_blank" class="hover:text-phab-teal transition-colors">Shipping</a>
+                    <a href="#" class="hover:text-phab-teal transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-phab-teal transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-phab-teal transition-colors">Shipping Policy</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/919099667422?text=Hi%20Phab!%20I%27m%20interested%20in%20ordering%20your%20protein%20products.%20Can%20you%20help%20me%20choose?" 
-       target="_blank"
-       class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform btn-pulse"
-       title="Chat on WhatsApp">
-        <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
-    </a>
-
     <!-- Video Modal -->
-    <div id="video-modal" class="fixed inset-0 z-[70] hidden items-center justify-center bg-black/90 backdrop-blur-sm">
-        <div class="relative w-full max-w-4xl mx-4">
-            <button onclick="closeVideoModal()" class="absolute -top-12 right-0 text-white hover:text-phab-teal transition-colors">
+    <div id="video-modal" class="fixed inset-0 bg-black/90 z-[70] hidden items-center justify-center p-6">
+        <div class="relative w-full max-w-4xl">
+            <button onclick="closeVideoModal()" class="absolute -top-12 right-0 p-2 text-white hover:text-phab-teal transition-colors">
                 <i data-lucide="x" class="w-8 h-8"></i>
             </button>
-            <div class="aspect-video bg-gray-900 rounded-2xl overflow-hidden flex items-center justify-center">
-                <div class="text-center text-gray-400">
-                    <i data-lucide="play-circle" class="w-16 h-16 mx-auto mb-4 text-phab-teal"></i>
-                    <p class="text-lg">Brand Story Video</p>
-                    <p class="text-sm mt-2">Coming Soon</p>
+            <div class="aspect-video bg-gray-900 rounded-2xl flex items-center justify-center">
+                <div class="text-center">
+                    <i data-lucide="play-circle" class="w-20 h-20 text-phab-teal mx-auto mb-4"></i>
+                    <p class="text-gray-400">Brand Story Video Coming Soon</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-[60] transform translate-y-20 opacity-0 transition-all duration-300">
-        <div class="bg-phab-teal text-phab-dark px-6 py-3 rounded-full font-bold shadow-lg flex items-center gap-2">
+    <div id="toast" class="fixed bottom-6 right-6 z-[80] transform translate-y-20 opacity-0 transition-all duration-300">
+        <div class="bg-phab-teal text-phab-dark px-6 py-4 rounded-2xl font-bold flex items-center gap-3 shadow-2xl">
             <i data-lucide="check-circle" class="w-5 h-5"></i>
             <span id="toast-message">Added to cart!</span>
         </div>
     </div>
-    <!-- JavaScript -->
+
+    </div><!-- /page-content -->
+
     <script>
-        // ===== LOADING SCREEN =====
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Cart state
+        let cart = [];
+
+        // Loading screen
         window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
             const loaderBar = document.getElementById('loader-bar');
-            
-            if (loaderBar) {
-                loaderBar.style.width = '100%';
-                loaderBar.style.transition = 'width 1.5s ease-in-out';
-            }
-            
-            setTimeout(() => {
-                if (loader) {
-                    loader.style.opacity = '0';
-                    loader.style.visibility = 'hidden';
+            const loader = document.getElementById('loader');
+            const pageContent = document.getElementById('page-content');
+
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 30;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
                     setTimeout(() => {
                         loader.classList.add('hidden');
+                        pageContent.classList.add('loaded');
                         initAnimations();
-                    }, 800);
+                    }, 500);
                 }
-            }, 1800);
+                loaderBar.style.width = progress + '%';
+            }, 200);
         });
 
-        // ===== NAVBAR SCROLL =====
+        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
-        let lastScroll = 0;
-
         window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            if (currentScroll > 100) {
+            if (window.scrollY > 50) {
                 navbar.classList.add('nav-scrolled');
             } else {
                 navbar.classList.remove('nav-scrolled');
             }
-            lastScroll = currentScroll;
-        }, { passive: true });
+        });
 
-        // ===== MOBILE MENU =====
+        // Mobile menu toggle
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-        if (menuToggle && mobileMenu) {
-            menuToggle.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
+        // Cart functions
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            const overlay = document.getElementById('cart-overlay');
+            const isOpen = !sidebar.classList.contains('translate-x-full');
+
+            if (isOpen) {
+                sidebar.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+            } else {
+                sidebar.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+            }
         }
 
-        // ===== SCROLL REVEAL ANIMATIONS =====
+        function addToCart(name, price, image) {
+            const existing = cart.find(item => item.name === name);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ name, price, image, qty: 1 });
+            }
+            updateCartUI();
+            showToast(name + ' added to cart!');
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            updateCartUI();
+        }
+
+        function updateQty(name, delta) {
+            const item = cart.find(item => item.name === name);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) {
+                    removeFromCart(name);
+                    return;
+                }
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartItems = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartFooter = document.getElementById('cart-footer');
+            const cartTotal = document.getElementById('cart-total');
+
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+
+            cartCount.textContent = totalQty;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="text-center text-gray-500 py-12">
+                        <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto mb-4 opacity-30"></i>
+                        <p>Your cart is empty</p>
+                        <button onclick="toggleCart(); scrollToProducts()" class="mt-4 text-phab-teal font-semibold hover:underline">Start Shopping</button>
+                    </div>
+                `;
+                cartFooter.style.display = 'none';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="flex gap-4 items-center bg-gray-900/50 p-4 rounded-2xl border border-gray-800">
+                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-xl" onerror="this.src='https://via.placeholder.com/64?text=Phab'">
+                        <div class="flex-1 min-w-0">
+                            <div class="font-semibold text-sm truncate">${item.name}</div>
+                            <div class="text-phab-teal font-bold">Rs.${item.price}</div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="updateQty('${item.name}', -1)" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors">
+                                <i data-lucide="minus" class="w-4 h-4"></i>
+                            </button>
+                            <span class="w-6 text-center font-bold">${item.qty}</span>
+                            <button onclick="updateQty('${item.name}', 1)" class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors">
+                                <i data-lucide="plus" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <button onclick="removeFromCart('${item.name}')" class="p-2 hover:bg-gray-800 rounded-lg transition-colors">
+                            <i data-lucide="trash-2" class="w-4 h-4 text-gray-500"></i>
+                        </button>
+                    </div>
+                `).join('');
+                cartFooter.style.display = 'block';
+                cartTotal.textContent = 'Rs.' + totalPrice;
+            }
+
+            lucide.createIcons();
+        }
+
+        function checkout() {
+            if (cart.length === 0) return;
+            const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+            const items = cart.map(item => `${item.qty}x ${item.name}`).join(', ');
+            const message = `Hello Phab Team! I would like to order: ${items}. Total: Rs.${totalPrice}`;
+            window.open(`https://wa.me/917521900880?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            toastMessage.textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Category filter
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const category = btn.dataset.category;
+                productCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Scroll to products
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Video modal
+        function openVideoModal() {
+            const modal = document.getElementById('video-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Close modal on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+                const sidebar = document.getElementById('cart-sidebar');
+                if (!sidebar.classList.contains('translate-x-full')) {
+                    toggleCart();
+                }
+            }
+        });
+
+        // Scroll reveal animations
         function initAnimations() {
             const revealSections = document.querySelectorAll('.reveal-section');
-            
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
                     }
                 });
             }, {
@@ -1138,230 +1229,94 @@
                 observer.observe(section);
             });
 
-            // Hero animations on load
-            const heroSections = document.querySelectorAll('#hero .reveal-section');
-            heroSections.forEach((section, index) => {
-                setTimeout(() => {
-                    section.classList.add('visible');
-                }, 300 + (index * 150));
-            });
-        }
+            // GSAP animations
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
 
-        // ===== CATEGORY FILTERING =====
-        const categoryBtns = document.querySelectorAll('.category-btn');
-        const productCards = document.querySelectorAll('.product-card');
-
-        categoryBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                categoryBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const category = btn.dataset.category;
-
-                productCards.forEach(card => {
-                    if (category === 'all' || card.dataset.category === category) {
-                        card.style.display = 'block';
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'scale(1)';
-                        }, 50);
-                    } else {
-                        card.style.opacity = '0';
-                        card.style.transform = 'scale(0.8)';
-                        setTimeout(() => {
-                            card.style.display = 'none';
-                        }, 400);
-                    }
+                // Hero text stagger
+                gsap.from('#hero h1 span', {
+                    y: 100,
+                    opacity: 0,
+                    duration: 1,
+                    stagger: 0.15,
+                    ease: 'power4.out'
                 });
+
+                // Hero image float
+                gsap.from('#hero img', {
+                    scale: 0.8,
+                    opacity: 0,
+                    duration: 1.2,
+                    delay: 0.5,
+                    ease: 'power4.out'
+                });
+
+                // Product cards stagger
+                gsap.from('.product-card', {
+                    scrollTrigger: {
+                        trigger: '#product-grid',
+                        start: 'top 80%'
+                    },
+                    y: 60,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: 'power3.out'
+                });
+
+                // Nutrition cards
+                gsap.from('.tilt-card', {
+                    scrollTrigger: {
+                        trigger: '#nutrition',
+                        start: 'top 70%'
+                    },
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    ease: 'power3.out'
+                });
+            }
+        }
+
+        // 3D Tilt effect on cards
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
             });
         });
 
-        // ===== CART FUNCTIONALITY =====
-        let cart = [];
-
-        function addToCart(name, price, image) {
-            const existing = cart.find(item => item.name === name);
-            if (existing) {
-                existing.quantity++;
-            } else {
-                cart.push({ name, price, image, quantity: 1 });
-            }
-            updateCartUI();
-            showToast(name + ' added to cart!');
-        }
-
-        function removeFromCart(name) {
-            cart = cart.filter(item => item.name !== name);
-            updateCartUI();
-        }
-
-        function updateQuantity(name, delta) {
-            const item = cart.find(item => item.name === name);
-            if (item) {
-                item.quantity += delta;
-                if (item.quantity <= 0) {
-                    removeFromCart(name);
-                } else {
-                    updateCartUI();
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    mobileMenu.classList.add('hidden');
                 }
-            }
-        }
-
-        function updateCartUI() {
-            const cartCount = document.getElementById('cart-count');
-            const cartItems = document.getElementById('cart-items');
-            const cartFooter = document.getElementById('cart-footer');
-            const cartTotal = document.getElementById('cart-total');
-
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
-            if (cartCount) cartCount.textContent = totalItems;
-
-            if (cart.length === 0) {
-                if (cartItems) {
-                    cartItems.innerHTML = `
-                        <div class="text-center text-gray-500 py-12">
-                            <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto mb-4 opacity-30"></i>
-                            <p>Your cart is empty</p>
-                            <button onclick="toggleCart(); scrollToProducts()" class="mt-4 text-phab-teal font-semibold hover:underline">Start Shopping</button>
-                        </div>
-                    `;
-                }
-                if (cartFooter) cartFooter.style.display = 'none';
-            } else {
-                if (cartItems) {
-                    cartItems.innerHTML = cart.map(item => `
-                        <div class="flex gap-4 items-center p-4 rounded-xl bg-gray-900/50 border border-gray-800">
-                            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain rounded-lg bg-gray-800" onerror="this.src='https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=100&h=100&fit=crop'">
-                            <div class="flex-1">
-                                <h4 class="font-semibold text-sm">${item.name}</h4>
-                                <p class="text-phab-teal font-bold">Rs.${item.price}</p>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <button onclick="updateQuantity('${item.name}', -1)" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition-colors">
-                                    <i data-lucide="minus" class="w-4 h-4"></i>
-                                </button>
-                                <span class="w-8 text-center font-bold">${item.quantity}</span>
-                                <button onclick="updateQuantity('${item.name}', 1)" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition-colors">
-                                    <i data-lucide="plus" class="w-4 h-4"></i>
-                                </button>
-                            </div>
-                            <button onclick="removeFromCart('${item.name}')" class="text-gray-500 hover:text-phab-coral transition-colors">
-                                <i data-lucide="trash-2" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    `).join('');
-                }
-                if (cartFooter) {
-                    cartFooter.style.display = 'block';
-                    if (cartTotal) cartTotal.textContent = 'Rs.' + totalPrice;
-                }
-            }
-
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
-        }
-
-        function toggleCart() {
-            const sidebar = document.getElementById('cart-sidebar');
-            const overlay = document.getElementById('cart-overlay');
-            
-            if (sidebar && overlay) {
-                if (sidebar.classList.contains('translate-x-full')) {
-                    sidebar.classList.remove('translate-x-full');
-                    overlay.classList.remove('hidden');
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    sidebar.classList.add('translate-x-full');
-                    overlay.classList.add('hidden');
-                    document.body.style.overflow = '';
-                }
-            }
-        }
-
-        function checkout() {
-            if (cart.length === 0) {
-                showToast('Your cart is empty!');
-                return;
-            }
-            
-            const items = cart.map(item => item.name + ' (x' + item.quantity + ')').join(', ');
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const message = 'Hi Phab! I would like to order: ' + items + '. Total: Rs.' + total + '. Please confirm my order.';
-            
-            window.open('https://wa.me/919099667422?text=' + encodeURIComponent(message), '_blank');
-        }
-
-        // ===== WHATSAPP ORDER =====
-        function openWhatsApp() {
-            const message = "Hi Phab! I am interested in your protein products. Can you help me choose the best options?";
-            window.open('https://wa.me/919099667422?text=' + encodeURIComponent(message), '_blank');
-        }
-
-        // ===== VIDEO MODAL =====
-        function openVideoModal() {
-            const modal = document.getElementById('video-modal');
-            if (modal) {
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeVideoModal() {
-            const modal = document.getElementById('video-modal');
-            if (modal) {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-                document.body.style.overflow = '';
-            }
-        }
-
-        // ===== TOAST NOTIFICATION =====
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toast-message');
-            
-            if (toastMessage) toastMessage.textContent = message;
-            if (toast) {
-                toast.classList.remove('translate-y-20', 'opacity-0');
-                setTimeout(() => {
-                    toast.classList.add('translate-y-20', 'opacity-0');
-                }, 3000);
-            }
-        }
-
-        // ===== SCROLL TO PRODUCTS =====
-        function scrollToProducts() {
-            const productsSection = document.getElementById('products');
-            if (productsSection) {
-                productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-
-        // ===== NEWSLETTER =====
-        function handleSubscribe(e) {
-            e.preventDefault();
-            showToast('Thanks for subscribing! Check your email.');
-            e.target.reset();
-        }
-
-        // ===== INIT LUCIDE ICONS =====
-        document.addEventListener('DOMContentLoaded', () => {
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
+            });
         });
 
-        // Re-init icons after dynamic content changes
-        const observer = new MutationObserver(() => {
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
+        // Parallax effect on blobs
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            document.querySelectorAll('.blob').forEach((blob, index) => {
+                const speed = 0.5 + index * 0.2;
+                blob.style.transform = `translateY(${scrolled * speed}px)`;
+            });
         });
-        observer.observe(document.body, { childList: true, subtree: true });
     </script>
 </body>
 </html>
