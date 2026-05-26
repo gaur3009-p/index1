@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drama On The Go | Statement Jewelry for the Nakhra in You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-cream: #fbf6f0;
+            --bg-warm: #f5efe6;
+            --text-black: #1a1a1a;
+            --text-dark: #2d2d2d;
+            --text-muted: #6b6b6b;
+            --accent-gold: #c9a96e;
+            --accent-warm: #d4a574;
+            --border-light: #e8e0d4;
+            --border-dark: #1a1a1a;
+            --shadow-soft: 0 4px 30px rgba(0,0,0,0.06);
+            --shadow-medium: 0 8px 40px rgba(0,0,0,0.1);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-black);
+            overflow-x: hidden;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-cream); }
+        ::-webkit-scrollbar-thumb { background: var(--text-black); border-radius: 3px; }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(251, 246, 240, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 15px 60px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--text-black);
+        }
+
+        .logo-text span {
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 1px;
+            background: var(--text-black);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-icons {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-icons a, .nav-icons button {
+            color: var(--text-black);
+            font-size: 1.1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-icons a:hover, .nav-icons button:hover { transform: scale(1.1); }
+
+        .cart-count {
+            position: absolute;
+            top: -8px; right: -8px;
+            background: var(--text-black);
+            color: var(--bg-cream);
+            font-size: 0.6rem;
+            width: 18px; height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-cream);
+        }
+
+        .hero-bg-pattern {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(201, 169, 110, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(201, 169, 110, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(201, 169, 110, 0.02) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            padding: 0 20px;
+            max-width: 900px;
+        }
+
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            letter-spacing: 4px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            font-weight: 300;
+            line-height: 1.1;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        .hero-title .dramatic {
+            font-weight: 600;
+            font-style: italic;
+            display: block;
+        }
+
+        .hero-subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.7s forwards;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+
+        .btn-primary {
+            padding: 16px 45px;
+            background: var(--text-black);
+            color: var(--bg-cream);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border: 1px solid var(--text-black);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--text-black);
+        }
+
+        .btn-secondary {
+            padding: 16px 45px;
+            background: transparent;
+            color: var(--text-black);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border: 1px solid var(--text-black);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-black);
+            color: var(--bg-cream);
+        }
+
+        .hero-image-float {
+            position: absolute;
+            opacity: 0.08;
+            z-index: 1;
+        }
+
+        .hero-image-float.img-1 {
+            top: 10%; right: 5%;
+            width: 300px;
+            transform: rotate(15deg);
+        }
+
+        .hero-image-float.img-2 {
+            bottom: 15%; left: 5%;
+            width: 250px;
+            transform: rotate(-10deg);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== MARQUEE ===== */
+        .marquee-section {
+            background: var(--text-black);
+            color: var(--bg-cream);
+            padding: 18px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+
+        .marquee-content span {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin: 0 40px;
+            opacity: 0.8;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ===== SECTION COMMON ===== */
+        .section { padding: 100px 60px; }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* ===== CATEGORIES ===== */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 3/4;
+        }
+
+        .category-card img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            filter: grayscale(20%);
+        }
+
+        .category-card:hover img {
+            transform: scale(1.08);
+            filter: grayscale(0%);
+        }
+
+        .category-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 40px 25px 25px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        }
+
+        .category-name {
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .category-count {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        /* ===== PRODUCTS ===== */
+        .products-section { background: var(--bg-warm); }
+        
+        .products-filter {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: none;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 8px 0;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            color: var(--text-black);
+        }
+
+        .filter-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 1px;
+            background: var(--text-black);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 35px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--bg-cream);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .product-image-wrap {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+        }
+
+        .product-image-wrap img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image-wrap img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px; left: 15px;
+            background: var(--text-black);
+            color: var(--bg-cream);
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+        }
+
+        .product-actions {
+            position: absolute;
+            bottom: -60px;
+            left: 0; right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-actions {
+            bottom: 0;
+        }
+
+        .action-btn {
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            background: var(--bg-cream);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .action-btn:hover {
+            background: var(--text-black);
+            color: var(--bg-cream);
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-category {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--text-black);
+        }
+
+        .product-price {
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .product-price .original {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-left: 10px;
+            font-size: 0.85rem;
+        }
+
+        /* ===== PRODUCT MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .product-modal {
+            background: var(--bg-cream);
+            max-width: 1000px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            animation: modalIn 0.4s ease;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px; right: 20px;
+            width: 40px; height: 40px;
+            background: var(--bg-cream);
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: var(--text-black);
+            color: var(--bg-cream);
+        }
+
+        .modal-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-image img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-details {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-category {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .modal-price {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .modal-description {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .modal-features {
+            margin-bottom: 30px;
+        }
+
+        .modal-features li {
+            list-style: none;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .modal-features li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+        }
+
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .btn-whatsapp {
+            padding: 16px;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+        }
+
+        .btn-instagram {
+            padding: 16px;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-instagram:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220, 39, 67, 0.3);
+        }
+
+        .btn-add-cart {
+            padding: 16px;
+            background: var(--text-black);
+            color: var(--bg-cream);
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1px solid var(--text-black);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-add-cart:hover {
+            background: transparent;
+            color: var(--text-black);
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery-section { background: var(--bg-cream); }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 300px;
+            gap: 8px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item.tall { grid-row: span 2; }
+        .gallery-item.wide { grid-column: span 2; }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-section {
+            background: var(--text-black);
+            color: var(--bg-cream);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: grayscale(30%);
+        }
+
+        .about-content {
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about-label {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.6;
+            margin-bottom: 20px;
+        }
+
+        .about-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .about-text {
+            font-size: 0.9rem;
+            line-height: 2;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 50px;
+        }
+
+        .stat-item h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+        }
+
+        .stat-item p {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.6;
+            margin-top: 5px;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-section { background: var(--bg-warm); }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--bg-cream);
+            padding: 40px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .testimonial-stars {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+
+        .testimonial-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+        }
+
+        .testimonial-author {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .testimonial-location {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* ===== CART SIDEBAR ===== */
+        .cart-sidebar {
+            position: fixed;
+            top: 0; right: -450px;
+            width: 450px;
+            max-width: 100%;
+            height: 100vh;
+            background: var(--bg-cream);
+            z-index: 2000;
+            transition: var(--transition);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.open { right: 0; }
+
+        .cart-header {
+            padding: 30px;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .cart-close:hover { transform: rotate(90deg); }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 30px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .cart-item img {
+            width: 80px; height: 80px;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 8px;
+            transition: var(--transition);
+        }
+
+        .cart-item-remove:hover { color: #dc3545; }
+
+        .cart-footer {
+            padding: 30px;
+            border-top: 1px solid var(--border-light);
+            background: var(--bg-warm);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .cart-checkout {
+            width: 100%;
+            padding: 18px;
+            background: var(--text-black);
+            color: var(--bg-cream);
+            border: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 10px;
+        }
+
+        .cart-checkout:hover {
+            background: var(--accent-gold);
+        }
+
+        .cart-whatsapp {
+            width: 100%;
+            padding: 14px;
+            background: #25D366;
+            color: white;
+            border: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .cart-whatsapp:hover { background: #128C7E; }
+
+        .cart-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+
+        .cart-empty i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+
+        /* ===== CHECKOUT MODAL ===== */
+        .checkout-modal {
+            background: var(--bg-cream);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 50px;
+            position: relative;
+            animation: modalIn 0.4s ease;
+        }
+
+        .checkout-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border-light);
+            background: transparent;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--text-black);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .payment-method {
+            flex: 1;
+            padding: 20px;
+            border: 1px solid var(--border-light);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .payment-method:hover,
+        .payment-method.active {
+            border-color: var(--text-black);
+            background: var(--bg-warm);
+        }
+
+        .payment-method i {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .payment-method span {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--text-black);
+            color: var(--bg-cream);
+            padding: 80px 60px 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto 60px;
+        }
+
+        .footer-brand .logo-text {
+            color: var(--bg-cream);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            line-height: 1.8;
+            opacity: 0.7;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(251,246,240,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-cream);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--bg-cream);
+            color: var(--text-black);
+        }
+
+        .footer-col h4 {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .footer-col a {
+            display: block;
+            color: rgba(251,246,240,0.6);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--bg-cream);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(251,246,240,0.1);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 0.75rem;
+            opacity: 0.5;
+            letter-spacing: 1px;
+        }
+
+        /* ===== FLOATING WHATSAPP ===== */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            z-index: 999;
+        }
+
+        .floating-whatsapp a {
+            width: 60px; height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .floating-whatsapp a:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.5);
+        }
+
+        .floating-whatsapp .pulse {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            background: #25D366;
+            animation: pulse 2s infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+
+        .floating-whatsapp-tooltip {
+            position: absolute;
+            right: 75px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--text-black);
+            color: white;
+            padding: 8px 16px;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .floating-whatsapp a:hover .floating-whatsapp-tooltip {
+            opacity: 1;
+            right: 80px;
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0; right: -100%;
+            width: 100%; height: 100vh;
+            background: var(--bg-cream);
+            z-index: 1500;
+            padding: 80px 40px;
+            transition: var(--transition);
+        }
+
+        .mobile-menu.open { right: 0; }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 25px; right: 25px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu-links {
+            list-style: none;
+        }
+
+        .mobile-menu-links li {
+            margin-bottom: 30px;
+        }
+
+        .mobile-menu-links a {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            text-decoration: none;
+            color: var(--text-black);
+            letter-spacing: 2px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .categories-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-section { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .product-modal { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 25px; }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .section { padding: 60px 25px; }
+            .categories-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
+            .gallery-item.tall { grid-row: span 1; }
+            .gallery-item.wide { grid-column: span 1; }
+            .about-content { padding: 50px 30px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .footer { padding: 60px 30px 30px; }
+            .cart-sidebar { width: 100%; }
+            .form-row { grid-template-columns: 1fr; }
+            .hero-cta { flex-direction: column; align-items: center; }
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--text-black);
+            color: var(--bg-cream);
+            padding: 16px 35px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            z-index: 3000;
+            opacity: 0;
+            transition: all 0.4s ease;
+            white-space: nowrap;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo-text">Drama <span>On The Go</span></a>
+        
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Shop</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+        </ul>
+        
+        <div class="nav-icons">
+            <button onclick="toggleCart()">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <a href="https://www.instagram.com/dramaonthego.in" target="_blank"><i class="fab fa-instagram"></i></a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" onclick="toggleMobileMenu()"><i class="fas fa-times"></i></button>
+        <ul class="mobile-menu-links">
+            <li><a href="#home" onclick="toggleMobileMenu()">Home</a></li>
+            <li><a href="#products" onclick="toggleMobileMenu()">Shop</a></li>
+            <li><a href="#gallery" onclick="toggleMobileMenu()">Gallery</a></li>
+            <li><a href="#about" onclick="toggleMobileMenu()">About</a></li>
+            <li><a href="#testimonials" onclick="toggleMobileMenu()">Reviews</a></li>
+        </ul>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-bg-pattern"></div>
+        
+        <div class="hero-content">
+            <p class="hero-tagline">Statement Jewelry for the Nakhra in You</p>
+            <h1 class="hero-title">
+                Drama<br>
+                <span class="dramatic">On The Go</span>
+            </h1>
+            <p class="hero-subtitle">By Ridhima Bhatia &mdash; Shipping PAN India</p>
+            <div class="hero-cta">
+                <a href="#products" class="btn-primary">Explore Collection</a>
+                <a href="https://wa.me/917521900880?text=Hi%20Drama%20On%20The%20Go!%20I%20want%20to%20place%20an%20order%20%F0%9F%92%8E" class="btn-secondary" target="_blank">DM to Order</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-section">
+        <div class="marquee-content">
+            <span>Free Shipping on Orders Above ₹999</span>
+            <span>&#10022;</span>
+            <span>Handcrafted with Love</span>
+            <span>&#10022;</span>
+            <span>300+ Happy Cuties</span>
+            <span>&#10022;</span>
+            <span>PAN India Delivery</span>
+            <span>&#10022;</span>
+            <span>Statement Jewelry for the Nakhra in You</span>
+            <span>&#10022;</span>
+            <span>Free Shipping on Orders Above ₹999</span>
+            <span>&#10022;</span>
+            <span>Handcrafted with Love</span>
+            <span>&#10022;</span>
+            <span>300+ Happy Cuties</span>
+            <span>&#10022;</span>
+            <span>PAN India Delivery</span>
+            <span>&#10022;</span>
+        </div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <section class="section" id="categories">
+        <div class="section-header reveal">
+            <p class="section-label">Browse By</p>
+            <h2 class="section-title">Categories</h2>
+        </div>
+        
+        <div class="categories-grid">
+            <div class="category-card reveal" onclick="filterProducts('earrings')">
+                <img src="https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/013b5b2b61f9cbe716b28c3ec985140e371b00b8.jpg" alt="Earrings">
+                <div class="category-overlay">
+                    <h3 class="category-name">Earrings</h3>
+                    <p class="category-count">12 Products</p>
+                </div>
+            </div>
+            <div class="category-card reveal" onclick="filterProducts('necklace')">
+                <img src="https://kimi-web-img.moonshot.cn/img/i.etsystatic.com/0f18d84bca0f6555d5c7324e5915ef0795c0de9c.jpg" alt="Necklaces">
+                <div class="category-overlay">
+                    <h3 class="category-name">Necklaces</h3>
+                    <p class="category-count">8 Products</p>
+                </div>
+            </div>
+            <div class="category-card reveal" onclick="filterProducts('ring')">
+                <img src="https://kimi-web-img.moonshot.cn/img/i.etsystatic.com/16174c5f9982384453931a6822bbf6a936780e2f.jpg" alt="Rings">
+                <div class="category-overlay">
+                    <h3 class="category-name">Rings</h3>
+                    <p class="category-count">6 Products</p>
+                </div>
+            </div>
+            <div class="category-card reveal" onclick="filterProducts('all')">
+                <img src="https://kimi-web-img.moonshot.cn/img/highondrama.com/b444acf0323029d72a99c0d6cbd3884a2e26b45a.png" alt="All">
+                <div class="category-overlay">
+                    <h3 class="category-name">View All</h3>
+                    <p class="category-count">30+ Products</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="section products-section" id="products">
+        <div class="section-header reveal">
+            <p class="section-label">Curated Collection</p>
+            <h2 class="section-title">Our Products</h2>
+        </div>
+        
+        <div class="products-filter reveal">
+            <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+            <button class="filter-btn" onclick="filterProducts('earrings')">Earrings</button>
+            <button class="filter-btn" onclick="filterProducts('necklace')">Necklaces</button>
+            <button class="filter-btn" onclick="filterProducts('ring')">Rings</button>
+            <button class="filter-btn" onclick="filterProducts('bracelet')">Bracelets</button>
+            <button class="filter-btn" onclick="filterProducts('maangtikka')">Maang Tikka</button>
+        </div>
+        
+        <div class="products-grid" id="productsGrid">
+            <!-- Products injected via JS -->
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section gallery-section" id="gallery">
+        <div class="section-header reveal">
+            <p class="section-label">Instagram Feed</p>
+            <h2 class="section-title">The Gallery</h2>
+        </div>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item tall reveal">
+                <img src="https://kimi-web-img.moonshot.cn/img/i.etsystatic.com/646e3ed6ee5873eb96f51e0a610566a865f1d77a.jpg" alt="Gallery 1">
+                <div class="gallery-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://kimi-web-img.moonshot.cn/img/highondrama.com/830942dadb9cb50cc3574d7296395889aa31525b.png" alt="Gallery 2">
+                <div class="gallery-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://kimi-web-img.moonshot.cn/img/i.etsystatic.com/8e28f538ed21625d10aa4444ab781c6f3b3259b4.jpg" alt="Gallery 3">
+                <div class="gallery-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="gallery-item tall reveal">
+                <img src="https://kimi-web-img.moonshot.cn/img/www.crunchyfashion.com/c1d9770d7f65b3d61e874d9defaacdfe93fc4f21.jpg" alt="Gallery 4">
+                <div class="gallery-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="gallery-item wide reveal">
+                <img src="https://kimi-web-img.moonshot.cn/img/content.jdmagicbox.com/920aa518ee6d759e0ea18ec39ada0872fe20afa4.jpg" alt="Gallery 5">
+                <div class="gallery-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://kimi-web-img.moonshot.cn/img/romikas.com/2d5169a76246fb3746403b6fee56c7cc500d53b0.jpg" alt="Gallery 6">
+                <div class="gallery-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://kimi-web-img.moonshot.cn/img/i.etsystatic.com/14ce8d91e89bf311008b96039b5ac4f8d7165c97.jpg" alt="Gallery 7">
+                <div class="gallery-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://kimi-web-img.moonshot.cn/img/images.meesho.com/e695a8a7b94ce9368c3c4f4c50fca42959f97740.webp" alt="Gallery 8">
+                <div class="gallery-overlay"><i class="fab fa-instagram"></i></div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="https://www.instagram.com/dramaonthego.in" target="_blank" class="btn-secondary">
+                <i class="fab fa-instagram" style="margin-right: 8px;"></i> Follow @dramaonthego.in
+            </a>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="about">
+        <div class="about-image">
+            <img src="https://kimi-web-img.moonshot.cn/img/i.etsystatic.com/83d045a25b4ee5dc780f54b343aea1628fc19545.jpg" alt="About Drama On The Go">
+        </div>
+        <div class="about-content reveal">
+            <p class="about-label">Our Story</p>
+            <h2 class="about-title">Crafting Drama,<br>One Piece at a Time</h2>
+            <p class="about-text">
+                Drama On The Go was born from a passion for bold, statement jewelry that speaks before you do. 
+                Founded by Ridhima Bhatia, every piece in our collection is thoughtfully curated to add that 
+                perfect touch of drama to your everyday look. From oxidized silver to contemporary designs, 
+                we believe jewelry should be as unique as the person wearing it. With 300+ happy customers 
+                across India, we are on a mission to make statement jewelry accessible to every nakhra-filled soul.
+            </p>
+            <div class="about-stats">
+                <div class="stat-item">
+                    <h3>300+</h3>
+                    <p>Happy Cuties</p>
+                </div>
+                <div class="stat-item">
+                    <h3>30+</h3>
+                    <p>Unique Designs</p>
+                </div>
+                <div class="stat-item">
+                    <h3>PAN</h3>
+                    <p>India Shipping</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section testimonials-section" id="testimonials">
+        <div class="section-header reveal">
+            <p class="section-label">Love Notes</p>
+            <h2 class="section-title">What Cuties Say</h2>
+        </div>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card reveal">
+                <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                <p class="testimonial-text">"Absolutely obsessed with my oxidized jhumkas! The quality is unmatched and they look even better in person. Already placed my third order!"</p>
+                <p class="testimonial-author">Priya Sharma</p>
+                <p class="testimonial-location">Mumbai, Maharashtra</p>
+            </div>
+            <div class="testimonial-card reveal">
+                <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                <p class="testimonial-text">"The packaging was so pretty I didn't want to open it! My statement necklace gets compliments every single time I wear it. Thank you Ridhima!"</p>
+                <p class="testimonial-author">Ananya Gupta</p>
+                <p class="testimonial-location">Delhi, NCR</p>
+            </div>
+            <div class="testimonial-card reveal">
+                <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+                <p class="testimonial-text">"Fast shipping to Bangalore and the pieces are exactly as shown on Instagram. The WhatsApp ordering was super smooth. Highly recommend!"</p>
+                <p class="testimonial-author">Meera Reddy</p>
+                <p class="testimonial-location">Bangalore, Karnataka</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <span class="logo-text">Drama <span>On The Go</span></span>
+                <p>Statement jewelry for the nakhra in you. Handcrafted with love, shipped with care. Every piece tells a story &mdash; make yours dramatic.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/dramaonthego.in" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/917521900880" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <a href="#products" onclick="filterProducts('earrings')">Earrings</a>
+                <a href="#products" onclick="filterProducts('necklace')">Necklaces</a>
+                <a href="#products" onclick="filterProducts('ring')">Rings</a>
+                <a href="#products" onclick="filterProducts('bracelet')">Bracelets</a>
+                <a href="#products" onclick="filterProducts('maangtikka')">Maang Tikka</a>
+            </div>
+            <div class="footer-col">
+                <h4>Help</h4>
+                <a href="#" onclick="showToast('Shipping Policy coming soon!')">Shipping Policy</a>
+                <a href="#" onclick="showToast('Return Policy coming soon!')">Returns & Exchanges</a>
+                <a href="#" onclick="showToast('Size Guide coming soon!')">Size Guide</a>
+                <a href="#" onclick="showToast('FAQ coming soon!')">FAQ</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <a href="https://wa.me/917521900880" target="_blank">WhatsApp: +91 75219 00880</a>
+                <a href="https://www.instagram.com/dramaonthego.in" target="_blank">Instagram: @dramaonthego.in</a>
+                <a href="mailto:hello@dramaonthego.in">hello@dramaonthego.in</a>
+                <a href="#">PAN India Shipping</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Drama On The Go by Ridhima Bhatia. All rights reserved. Made with &#10084; and a little drama.</p>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP -->
+    <div class="floating-whatsapp">
+        <a href="https://wa.me/917521900880?text=Hi%20Drama%20On%20The%20Go!%20I%20saw%20your%20website%20and%20want%20to%20place%20an%20order%20%F0%9F%92%8E" target="_blank">
+            <div class="pulse"></div>
+            <i class="fab fa-whatsapp"></i>
+            <span class="floating-whatsapp-tooltip">Chat on WhatsApp</span>
+        </a>
+    </div>
+
+    <!-- PRODUCT MODAL -->
+    <div class="modal-overlay" id="productModal">
+        <div class="product-modal" id="modalContent">
+            <!-- Injected via JS -->
+        </div>
+    </div>
+
+    <!-- CHECKOUT MODAL -->
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="checkout-modal">
+            <button class="modal-close" onclick="closeCheckout()"><i class="fas fa-times"></i></button>
+            <h2 class="checkout-title">Secure Checkout</h2>
+            
+            <form id="checkoutForm" onsubmit="processCheckout(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" required placeholder="Ridhima">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" required placeholder="Bhatia">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required placeholder="you@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" required placeholder="+91 98765 43210">
+                </div>
+                
+                <div class="form-group">
+                    <label>Shipping Address</label>
+                    <textarea rows="3" required placeholder="Full address with PIN code"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>City & State</label>
+                    <input type="text" required placeholder="Kanpur, Uttar Pradesh">
+                </div>
+                
+                <p style="font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; color: var(--text-muted);">Payment Method</p>
+                <div class="payment-methods">
+                    <div class="payment-method active" onclick="selectPayment(this)">
+                        <i class="fas fa-qrcode"></i>
+                        <span>UPI / QR</span>
+                    </div>
+                    <div class="payment-method" onclick="selectPayment(this)">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Cash on Delivery</span>
+                    </div>
+                    <div class="payment-method" onclick="selectPayment(this)">
+                        <i class="fab fa-cc-visa"></i>
+                        <span>Card</span>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-add-cart" style="width: 100%;">
+                    <i class="fas fa-lock"></i> Place Order Securely
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- CART SIDEBAR -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Bag</h3>
+            <button class="cart-close" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Injected via JS -->
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display: none;">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotal">₹0</span>
+            </div>
+            <button class="cart-checkout" onclick="openCheckout()">
+                <i class="fas fa-lock"></i> Proceed to Checkout
+            </button>
+            <button class="cart-whatsapp" onclick="orderViaWhatsApp()">
+                <i class="fab fa-whatsapp"></i> Order via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ===== PRODUCT DATA =====
+        const products = [
+            {
+                id: 1, name: "Elephant Tribal Jhumka", category: "earrings",
+                price: 899, originalPrice: 1299,
+                image: "https://kimi-web-img.moonshot.cn/img/m.media-amazon.com/013b5b2b61f9cbe716b28c3ec985140e371b00b8.jpg",
+                badge: "Bestseller",
+                description: "Handcrafted oxidized silver elephant tribal jhumka earrings with delicate pearl drops. Perfect for festive occasions and everyday drama.",
+                features: ["Oxidized silver plating", "Pearl drop details", "Lightweight & comfortable", "Push-back closure", "Anti-tarnish coating"]
+            },
+            {
+                id: 2, name: "Navratan Polki Kundan Set", category: "necklace",
+                price: 2499, originalPrice: 3499,
+                image: "https://kimi-web-img.moonshot.cn/img/i.etsystatic.com/849f449943bed0a49e6066baf14bb83546932041.jpg",
+                badge: "New",
+                description: "A stunning Navratan polki kundan necklace set featuring vibrant gemstones. The perfect statement piece for weddings and celebrations.",
+                features: ["Navratan gemstone arrangement", "Kundan setting", "Includes matching earrings", "Adjustable dori", "Bridal collection"]
+            },
+            {
+                id: 3, name: "Turquoise Statement Earrings", category: "earrings",
+                price: 1199, originalPrice: 1599,
+                image: "https://kimi-web-img.moonshot.cn/img/i.etsystatic.com/646e3ed6ee5873eb96f51e0a610566a865f1d77a.jpg",
+                badge: "",
+                description: "Bold oxidized statement earrings with turquoise stone center and pearl fringe. Adds the perfect pop of color to any outfit.",
+                features: ["Oxidized silver finish", "Turquoise center stone", "Pearl fringe detailing", "Hook closure", "Handcrafted"]
+            },
+            {
+                id: 4, name: "Silver Jhumka Hoops", category: "earrings",
+                price: 799, originalPrice: 1099,
+                image: "https://kimi-web-img.moonshot.cn/img/i.etsystatic.com/8e28f538ed21625d10aa4444ab781c6f3b3259b4.jpg",
+                badge: "",
+                description: "Classic oxidized silver jhumka hoop earrings with intricate filigree work. Lightweight and perfect for daily wear with a touch of tradition.",
+                features: ["Oxidized silver", "Filigree pattern", "Bell jhumka design", "French hook", "Hypoallergenic"]
+            },
+            {
+                id: 5, name: "Tribal Coin Necklace", category: "necklace",
+                price: 1899, originalPrice: 2499,
+                image: "https://kimi-web-img.moonshot.cn/img/i.etsystatic.com/0f18d84bca0f6555d5c7324e5915ef0795c0de9c.jpg",
+                badge: "Trending",
+                description: "Layered tribal oxidized necklace with coin pendants and adjustable fit. A boho-chic masterpiece for the modern nakhra.",
+                features: ["Layered design", "Coin pendants", "Adjustable length", "Oxidized finish", "Boho aesthetic"]
+            },
+            {
+                id: 6, name: "Peacock Feather Danglers", category: "earrings",
+                price: 999, originalPrice: 1399,
+                image: "https://kimi-web-img.moonshot.cn/img/images.meesho.com/e695a8a7b94ce9368c3c4f4c50fca42959f97740.webp",
+                badge: "",
+                description: "Elegant peacock feather-inspired oxidized dangler earrings with ghungroo beads. Perfect for festive evenings and celebrations.",
+                features: ["Peacock motif", "Ghungroo beads", "Oxidized silver", "Push-back closure", "Festive wear"]
+            },
+            {
+                id: 7, name: "Parrot & Ruby Danglers", category: "earrings",
+                price: 1299, originalPrice: 1799,
+                image: "https://kimi-web-img.moonshot.cn/img/romikas.com/2d5169a76246fb3746403b6fee56c7cc500d53b0.jpg",
+                badge: "Limited",
+                description: "Unique parrot motif oxidized earrings with ruby-colored stones and pearl drops. A conversation starter for sure!",
+                features: ["Parrot design", "Ruby colored stones", "Pearl accents", "Oxidized finish", "Statement piece"]
+            },
+            {
+                id: 8, name: "Boho Long Necklace Set", category: "necklace",
+                price: 2199, originalPrice: 2999,
+                image: "https://kimi-web-img.moonshot.cn/img/www.crunchyfashion.com/c1d9770d7f65b3d61e874d9defaacdfe93fc4f21.jpg",
+                badge: "",
+                description: "Long boho oxidized necklace with matching jhum
+
+... [truncated for display] ...
+
+    });
+        document.getElementById('checkoutModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeCheckout();
+        });
+
+        // ===== ESCAPE KEY =====
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeProductModal();
+                closeCheckout();
+                document.getElementById('cartSidebar').classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>
