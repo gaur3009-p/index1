@@ -1,30 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GetPhab | India's Tastiest Protein — Cheat Without Guilt</title>
     <meta name="description" content="India's highest protein, lowest calorie bars and milkshakes. Zero added sugar. No artificial sweeteners. Just pure indulgence.">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- DaisyUI -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
-    
-    <!-- Lenis Smooth Scroll -->
-    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-    
-    <!-- GSAP + ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <script>
@@ -62,20 +50,11 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        html.lenis, html.lenis body { height: auto; }
-        .lenis.lenis-smooth { scroll-behavior: auto !important; }
-        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-        .lenis.lenis-stopped { overflow: hidden; }
+        html { scroll-behavior: smooth; }
 
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #0A1A1A; }
         ::-webkit-scrollbar-thumb { background: #1BA3A3; border-radius: 3px; }
-
-        #webgl-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; pointer-events: none;
-        }
 
         .product-card {
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
@@ -83,11 +62,6 @@
         .product-card:hover { transform: translateY(-12px) scale(1.02); }
         .product-card:hover .product-img { transform: scale(1.1) rotate(3deg); }
         .product-img { transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
-
-        .magnetic-btn {
-            position: relative; display: inline-flex; align-items: center; justify-content: center;
-            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-        }
 
         .marquee-track { display: flex; animation: marquee 25s linear infinite; }
         @keyframes marquee {
@@ -119,31 +93,15 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        .reveal-section { opacity: 0; transform: translateY(60px); }
-
-        .cursor-follower {
-            width: 20px; height: 20px; background: rgba(27, 163, 163, 0.6);
-            border-radius: 50%; position: fixed; pointer-events: none;
-            z-index: 9998; mix-blend-mode: difference;
-            transition: transform 0.15s ease-out, width 0.3s, height 0.3s;
-        }
-        .cursor-follower.hover { width: 60px; height: 60px; background: rgba(27, 163, 163, 0.3); }
-
-        .nutrition-badge {
-            background: linear-gradient(135deg, rgba(27,163,163,0.1) 0%, rgba(0,212,212,0.05) 100%);
-            border: 1px solid rgba(27,163,163,0.2); backdrop-filter: blur(10px);
-        }
-
         .nav-scrolled {
-            background: rgba(10, 26, 26, 0.9) !important;
+            background: rgba(10, 26, 26, 0.95) !important;
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(27, 163, 163, 0.1);
         }
 
-        .flavor-orb {
-            width: 150px; height: 150px; border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(0,212,212,0.6), rgba(27,163,163,0.1));
-            filter: blur(50px); position: absolute; transition: all 0.8s ease;
+        .nutrition-badge {
+            background: linear-gradient(135deg, rgba(27,163,163,0.1) 0%, rgba(0,212,212,0.05) 100%);
+            border: 1px solid rgba(27,163,163,0.2); backdrop-filter: blur(10px);
         }
 
         @keyframes pulse-glow {
@@ -151,40 +109,6 @@
             50% { box-shadow: 0 0 0 20px rgba(27, 163, 163, 0); }
         }
         .btn-pulse { animation: pulse-glow 2s infinite; }
-
-        .tilt-card { transform-style: preserve-3d; perspective: 1000px; }
-
-        .loader {
-            position: fixed; inset: 0; background: #0A1A1A; z-index: 10000;
-            display: flex; align-items: center; justify-content: center;
-            transition: opacity 0.8s ease, visibility 0.8s;
-        }
-        .loader.hidden { opacity: 0; visibility: hidden; }
-        .loader-text {
-            font-family: 'Outfit', sans-serif; font-size: 4rem; font-weight: 900;
-            color: #1BA3A3; letter-spacing: -0.02em;
-        }
-
-        .shimmer {
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            background-size: 200% 100%;
-            animation: shimmer 2s infinite;
-        }
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .text-stroke {
-            -webkit-text-stroke: 1px rgba(27, 163, 163, 0.3);
-            color: transparent;
-        }
 
         .hero-gradient {
             background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(27,163,163,0.15), transparent);
@@ -210,9 +134,54 @@
             display: flex; align-items: center; justify-content: center;
             font-weight: bold;
         }
+
+        .loader {
+            position: fixed; inset: 0; background: #0A1A1A; z-index: 10000;
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+        .loader.hidden { opacity: 0; visibility: hidden; }
+        .loader-text {
+            font-family: 'Outfit', sans-serif; font-size: 4rem; font-weight: 900;
+            color: #1BA3A3; letter-spacing: -0.02em;
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .reveal-section { opacity: 0; transform: translateY(40px); }
+        .reveal-section.visible { opacity: 1; transform: translateY(0); transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1); }
+
+        .tilt-card { transform-style: preserve-3d; perspective: 1000px; }
+
+        .text-stroke {
+            -webkit-text-stroke: 1px rgba(27, 163, 163, 0.3);
+            color: transparent;
+        }
+
+        .flavor-orb {
+            width: 150px; height: 150px; border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(0,212,212,0.6), rgba(27,163,163,0.1));
+            filter: blur(50px); position: absolute; transition: all 0.8s ease;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
     </style>
 </head>
 <body class="bg-phab-dark text-white font-outfit overflow-x-hidden selection:bg-phab-teal selection:text-phab-dark">
+
+    <div class="grain"></div>
 
     <!-- Loading Screen -->
     <div class="loader" id="loader">
@@ -226,33 +195,24 @@
         </div>
     </div>
 
-    <!-- Grain Overlay -->
-    <div class="grain"></div>
-
-    <!-- Custom Cursor -->
-    <div class="cursor-follower hidden md:block" id="cursor"></div>
-
-    <!-- WebGL Background -->
-    <canvas id="webgl-bg"></canvas>
-
     <!-- Navigation -->
     <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-4 px-6 lg:px-12">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3 group magnetic-hover">
+            <a href="#" class="flex items-center gap-3 group">
                 <img src="https://raw.githubusercontent.com/gaur3009-p/herbistwell/main/559736553_18139090813447474_718169654251258735_n.jpg" 
                      alt="Phab Logo" class="w-10 h-10 rounded-xl object-cover group-hover:scale-110 transition-transform">
                 <span class="text-2xl font-bold tracking-tight hidden sm:block">phab</span>
             </a>
 
             <div class="hidden lg:flex items-center gap-8">
-                <a href="#products" class="text-sm font-medium text-gray-300 hover:text-phab-teal transition-colors magnetic-hover">Products</a>
-                <a href="#story" class="text-sm font-medium text-gray-300 hover:text-phab-teal transition-colors magnetic-hover">Our Story</a>
-                <a href="#nutrition" class="text-sm font-medium text-gray-300 hover:text-phab-teal transition-colors magnetic-hover">Why Phab?</a>
-                <a href="#reviews" class="text-sm font-medium text-gray-300 hover:text-phab-teal transition-colors magnetic-hover">Reviews</a>
+                <a href="#products" class="text-sm font-medium text-gray-300 hover:text-phab-teal transition-colors">Products</a>
+                <a href="#story" class="text-sm font-medium text-gray-300 hover:text-phab-teal transition-colors">Our Story</a>
+                <a href="#nutrition" class="text-sm font-medium text-gray-300 hover:text-phab-teal transition-colors">Why Phab?</a>
+                <a href="#reviews" class="text-sm font-medium text-gray-300 hover:text-phab-teal transition-colors">Reviews</a>
             </div>
 
             <div class="flex items-center gap-4">
-                <button class="relative hidden md:flex items-center gap-2 px-5 py-2.5 rounded-full border border-phab-teal/30 text-phab-teal hover:bg-phab-teal hover:text-phab-dark transition-all text-sm font-semibold magnetic-hover" onclick="toggleCart()">
+                <button class="relative hidden md:flex items-center gap-2 px-5 py-2.5 rounded-full border border-phab-teal/30 text-phab-teal hover:bg-phab-teal hover:text-phab-dark transition-all text-sm font-semibold" onclick="toggleCart()">
                     <i data-lucide="shopping-bag" class="w-4 h-4"></i>
                     <span>Cart</span>
                     <span class="cart-badge" id="cart-count">0</span>
@@ -263,7 +223,6 @@
             </div>
         </div>
 
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-phab-dark/95 backdrop-blur-xl border-t border-phab-teal/10 p-6">
             <div class="flex flex-col gap-4">
                 <a href="#products" class="text-lg font-medium py-2 border-b border-gray-800">Products</a>
@@ -293,7 +252,7 @@
         <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-800 bg-phab-dark" id="cart-footer" style="display: none;">
             <div class="flex justify-between mb-4 text-lg font-bold">
                 <span>Total</span>
-                <span id="cart-total">₹0</span>
+                <span id="cart-total">Rs.0</span>
             </div>
             <button onclick="checkout()" class="w-full py-4 bg-phab-teal text-phab-dark rounded-xl font-bold text-lg hover:bg-phab-cyan transition-all btn-pulse">
                 Checkout
@@ -301,7 +260,6 @@
         </div>
     </div>
     <div id="cart-overlay" class="fixed inset-0 bg-black/50 z-[55] hidden" onclick="toggleCart()"></div>
-
     <!-- Hero Section -->
     <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 hero-gradient">
         <div class="blob w-96 h-96 bg-phab-teal/20 top-20 -left-20"></div>
@@ -325,11 +283,11 @@
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal-section">
-                    <button onclick="scrollToProducts()" class="magnetic-btn px-8 py-4 bg-phab-teal text-phab-dark rounded-full font-bold text-lg hover:bg-phab-cyan transition-all btn-pulse magnetic-hover">
+                    <button onclick="scrollToProducts()" class="px-8 py-4 bg-phab-teal text-phab-dark rounded-full font-bold text-lg hover:bg-phab-cyan transition-all btn-pulse inline-flex items-center justify-center gap-2">
                         Explore Flavors
-                        <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
                     </button>
-                    <button onclick="openVideoModal()" class="magnetic-btn px-8 py-4 border border-white/20 rounded-full font-semibold hover:bg-white/10 transition-all flex items-center gap-3 magnetic-hover">
+                    <button onclick="openVideoModal()" class="px-8 py-4 border border-white/20 rounded-full font-semibold hover:bg-white/10 transition-all flex items-center justify-center gap-3">
                         <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
                             <i data-lucide="play" class="w-4 h-4 fill-current"></i>
                         </div>
@@ -385,26 +343,25 @@
     <section class="py-6 bg-phab-teal/5 border-y border-phab-teal/10 overflow-hidden">
         <div class="marquee-track whitespace-nowrap">
             <span class="text-3xl md:text-5xl font-black text-phab-teal/20 mx-6">NO ADDED SUGAR</span>
-            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">◆</span>
+            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">&#9670;</span>
             <span class="text-3xl md:text-5xl font-black text-phab-teal/20 mx-6">HIGH PROTEIN</span>
-            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">◆</span>
+            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">&#9670;</span>
             <span class="text-3xl md:text-5xl font-black text-phab-teal/20 mx-6">DIABETIC FRIENDLY</span>
-            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">◆</span>
+            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">&#9670;</span>
             <span class="text-3xl md:text-5xl font-black text-phab-teal/20 mx-6">GLUTEN FREE</span>
-            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">◆</span>
+            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">&#9670;</span>
             <span class="text-3xl md:text-5xl font-black text-phab-teal/20 mx-6">NO ARTIFICIAL SWEETENERS</span>
-            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">◆</span>
+            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">&#9670;</span>
             <span class="text-3xl md:text-5xl font-black text-phab-teal/20 mx-6">100% MILLETS</span>
-            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">◆</span>
+            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">&#9670;</span>
             <span class="text-3xl md:text-5xl font-black text-phab-teal/20 mx-6">NO ADDED SUGAR</span>
-            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">◆</span>
+            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">&#9670;</span>
             <span class="text-3xl md:text-5xl font-black text-phab-teal/20 mx-6">HIGH PROTEIN</span>
-            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">◆</span>
+            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">&#9670;</span>
             <span class="text-3xl md:text-5xl font-black text-phab-teal/20 mx-6">DIABETIC FRIENDLY</span>
-            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">◆</span>
+            <span class="text-3xl md:text-5xl font-black text-white/10 mx-6">&#9670;</span>
         </div>
     </section>
-
     <!-- Products Section -->
     <section id="products" class="py-24 relative">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
@@ -447,8 +404,8 @@
                             <div class="text-center"><div class="text-lg font-bold text-phab-coral">160</div><div class="text-[10px] text-gray-500 uppercase">Kcal</div></div>
                         </div>
                         <div class="flex items-center justify-between pt-4">
-                            <div class="text-2xl font-bold">₹99</div>
-                            <button onclick="addToCart('Chocolate Hazelnut Cheat Bar', 99, 'https://www.getphab.com/cdn/shop/files/cheat-chocolate-hazelnut.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2 magnetic-hover">
+                            <div class="text-2xl font-bold">Rs.99</div>
+                            <button onclick="addToCart('Chocolate Hazelnut Cheat Bar', 99, 'https://www.getphab.com/cdn/shop/files/cheat-chocolate-hazelnut.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
                                 Add to Cart <i data-lucide="plus" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -477,8 +434,8 @@
                             <div class="text-center"><div class="text-lg font-bold text-phab-coral">160</div><div class="text-[10px] text-gray-500 uppercase">Kcal</div></div>
                         </div>
                         <div class="flex items-center justify-between pt-4">
-                            <div class="text-2xl font-bold">₹99</div>
-                            <button onclick="addToCart('Blueberry Cheesecake Cheat Bar', 99, 'https://www.getphab.com/cdn/shop/files/cheat-blueberry-cheesecake.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2 magnetic-hover">
+                            <div class="text-2xl font-bold">Rs.99</div>
+                            <button onclick="addToCart('Blueberry Cheesecake Cheat Bar', 99, 'https://www.getphab.com/cdn/shop/files/cheat-blueberry-cheesecake.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
                                 Add to Cart <i data-lucide="plus" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -507,8 +464,8 @@
                             <div class="text-center"><div class="text-lg font-bold text-phab-coral">160</div><div class="text-[10px] text-gray-500 uppercase">Kcal</div></div>
                         </div>
                         <div class="flex items-center justify-between pt-4">
-                            <div class="text-2xl font-bold">₹99</div>
-                            <button onclick="addToCart('Chocolate Peanut Butter Cheat Bar', 99, 'https://www.getphab.com/cdn/shop/files/cheat-chocolate-peanut-butter.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2 magnetic-hover">
+                            <div class="text-2xl font-bold">Rs.99</div>
+                            <button onclick="addToCart('Chocolate Peanut Butter Cheat Bar', 99, 'https://www.getphab.com/cdn/shop/files/cheat-chocolate-peanut-butter.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
                                 Add to Cart <i data-lucide="plus" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -529,7 +486,7 @@
                             <span class="text-xs text-gray-500">65g</span>
                         </div>
                         <h3 class="text-xl font-bold">Mocha Nut Fudge</h3>
-                        <p class="text-sm text-gray-400">Coffee lovers' dream with 11g protein punch</p>
+                        <p class="text-sm text-gray-400">Coffee lovers dream with 11g protein punch</p>
                         <div class="flex items-center gap-4 pt-2">
                             <div class="text-center"><div class="text-lg font-bold text-phab-teal">11g</div><div class="text-[10px] text-gray-500 uppercase">Protein</div></div>
                             <div class="w-px h-8 bg-gray-800"></div>
@@ -538,8 +495,8 @@
                             <div class="text-center"><div class="text-lg font-bold text-phab-coral">35g</div><div class="text-[10px] text-gray-500 uppercase">Weight</div></div>
                         </div>
                         <div class="flex items-center justify-between pt-4">
-                            <div class="text-2xl font-bold">₹75</div>
-                            <button onclick="addToCart('Mocha Nut Fudge Protein Bar', 75, 'https://www.getphab.com/cdn/shop/files/protein-mocha-nut-fudge.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2 magnetic-hover">
+                            <div class="text-2xl font-bold">Rs.75</div>
+                            <button onclick="addToCart('Mocha Nut Fudge Protein Bar', 75, 'https://www.getphab.com/cdn/shop/files/protein-mocha-nut-fudge.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
                                 Add to Cart <i data-lucide="plus" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -569,7 +526,7 @@
                             <div class="text-center"><div class="text-lg font-bold text-phab-coral">GF</div><div class="text-[10px] text-gray-500 uppercase">Free</div></div>
                         </div>
                         <div class="flex items-center justify-between pt-4">
-                            <div class="text-2xl font-bold text-gray-500">₹75</div>
+                            <div class="text-2xl font-bold text-gray-500">Rs.75</div>
                             <button disabled class="px-6 py-3 bg-gray-800 text-gray-500 rounded-xl font-bold cursor-not-allowed">Sold Out</button>
                         </div>
                     </div>
@@ -598,8 +555,8 @@
                             <div class="text-center"><div class="text-lg font-bold text-phab-coral">DF</div><div class="text-[10px] text-gray-500 uppercase">Friendly</div></div>
                         </div>
                         <div class="flex items-center justify-between pt-4">
-                            <div class="text-2xl font-bold">₹99</div>
-                            <button onclick="addToCart('Strawberries & Cream Milkshake', 99, 'https://www.getphab.com/cdn/shop/files/milkshake-strawberries-cream.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2 magnetic-hover">
+                            <div class="text-2xl font-bold">Rs.99</div>
+                            <button onclick="addToCart('Strawberries & Cream Milkshake', 99, 'https://www.getphab.com/cdn/shop/files/milkshake-strawberries-cream.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
                                 Add to Cart <i data-lucide="plus" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -619,7 +576,7 @@
                             <span class="text-xs text-gray-500">200ml</span>
                         </div>
                         <h3 class="text-xl font-bold">Coffee Tiramisu</h3>
-                        <p class="text-sm text-gray-400">Founder's favorite — creamy tiramisu in a bottle</p>
+                        <p class="text-sm text-gray-400">Founders favorite — creamy tiramisu in a bottle</p>
                         <div class="flex items-center gap-4 pt-2">
                             <div class="text-center"><div class="text-lg font-bold text-phab-teal">10g</div><div class="text-[10px] text-gray-500 uppercase">Protein</div></div>
                             <div class="w-px h-8 bg-gray-800"></div>
@@ -628,8 +585,8 @@
                             <div class="text-center"><div class="text-lg font-bold text-phab-coral">No</div><div class="text-[10px] text-gray-500 uppercase">Artificial</div></div>
                         </div>
                         <div class="flex items-center justify-between pt-4">
-                            <div class="text-2xl font-bold">₹85</div>
-                            <button onclick="addToCart('Coffee Tiramisu Milkshake', 85, 'https://www.getphab.com/cdn/shop/files/milkshake-coffee-tiramisu.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2 magnetic-hover">
+                            <div class="text-2xl font-bold">Rs.85</div>
+                            <button onclick="addToCart('Coffee Tiramisu Milkshake', 85, 'https://www.getphab.com/cdn/shop/files/milkshake-coffee-tiramisu.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
                                 Add to Cart <i data-lucide="plus" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -659,8 +616,8 @@
                             <div class="text-center"><div class="text-lg font-bold text-phab-coral">100%</div><div class="text-[10px] text-gray-500 uppercase">Millets</div></div>
                         </div>
                         <div class="flex items-center justify-between pt-4">
-                            <div class="text-2xl font-bold">₹60</div>
-                            <button onclick="addToCart('Cookies & Cream Wafer', 60, 'https://www.getphab.com/cdn/shop/files/wafer-cookies-cream.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2 magnetic-hover">
+                            <div class="text-2xl font-bold">Rs.60</div>
+                            <button onclick="addToCart('Cookies & Cream Wafer', 60, 'https://www.getphab.com/cdn/shop/files/wafer-cookies-cream.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
                                 Add to Cart <i data-lucide="plus" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -689,8 +646,8 @@
                             <div class="text-center"><div class="text-lg font-bold text-phab-coral">No</div><div class="text-[10px] text-gray-500 uppercase">Maida</div></div>
                         </div>
                         <div class="flex items-center justify-between pt-4">
-                            <div class="text-2xl font-bold">₹60</div>
-                            <button onclick="addToCart('Strawberry Cake Wafer', 60, 'https://www.getphab.com/cdn/shop/files/wafer-strawberry-cream.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2 magnetic-hover">
+                            <div class="text-2xl font-bold">Rs.60</div>
+                            <button onclick="addToCart('Strawberry Cake Wafer', 60, 'https://www.getphab.com/cdn/shop/files/wafer-strawberry-cream.png?v=1700000000')" class="px-6 py-3 bg-phab-teal text-phab-dark rounded-xl font-bold hover:bg-phab-cyan transition-all flex items-center gap-2">
                                 Add to Cart <i data-lucide="plus" class="w-4 h-4"></i>
                             </button>
                         </div>
@@ -699,7 +656,6 @@
             </div>
         </div>
     </section>
-
     <!-- Brand Story Section -->
     <section id="story" class="py-24 relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-r from-phab-teal/5 to-transparent"></div>
@@ -728,7 +684,7 @@
                             <div class="text-xs text-gray-500 mt-1">Happy Customers</div>
                         </div>
                         <div class="text-center p-4 rounded-2xl bg-gray-900/50 border border-gray-800">
-                            <div class="text-3xl font-black text-phab-teal">4.8★</div>
+                            <div class="text-3xl font-black text-phab-teal">4.8&#9733;</div>
                             <div class="text-xs text-gray-500 mt-1">Average Rating</div>
                         </div>
                     </div>
@@ -863,7 +819,7 @@
                         <i data-lucide="star" class="w-5 h-5 text-phab-gold fill-current"></i>
                         <i data-lucide="star" class="w-5 h-5 text-phab-gold fill-current"></i>
                     </div>
-                    <p class="text-gray-300 mb-6 leading-relaxed">"Finally a protein bar that doesn't taste like cardboard! The Blueberry Cheesecake is literally dessert. I've replaced my evening sweets with this."</p>
+                    <p class="text-gray-300 mb-6 leading-relaxed">"Finally a protein bar that does not taste like cardboard! The Blueberry Cheesecake is literally dessert. I have replaced my evening sweets with this."</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-phab-teal/20 rounded-full flex items-center justify-center text-phab-teal font-bold">A</div>
                         <div>
@@ -881,7 +837,7 @@
                         <i data-lucide="star" class="w-5 h-5 text-phab-gold fill-current"></i>
                         <i data-lucide="star" class="w-5 h-5 text-phab-gold fill-current"></i>
                     </div>
-                    <p class="text-gray-300 mb-6 leading-relaxed">"As a diabetic, finding tasty snacks is hard. Phab milkshakes are a game changer — 0 added sugar and the Coffee Tiramisu is chef's kiss!"</p>
+                    <p class="text-gray-300 mb-6 leading-relaxed">"As a diabetic, finding tasty snacks is hard. Phab milkshakes are a game changer — 0 added sugar and the Coffee Tiramisu is chefs kiss!"</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-phab-coral/20 rounded-full flex items-center justify-center text-phab-coral font-bold">R</div>
                         <div>
@@ -911,7 +867,6 @@
             </div>
         </div>
     </section>
-
     <!-- CTA Section -->
     <section class="py-24 relative overflow-hidden">
         <div class="absolute inset-0 bg-phab-teal/10"></div>
@@ -919,14 +874,14 @@
         
         <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal-section">
             <h2 class="text-5xl md:text-7xl font-black mb-6">Ready to <span class="liquid-text">Cheat Clean?</span></h2>
-            <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">Join 50,000+ Indians who've made the switch. Free shipping on orders above ₹499.</p>
+            <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">Join 50,000+ Indians who have made the switch. Free shipping on orders above Rs.499.</p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="https://www.getphab.com/collections/all" target="_blank" class="magnetic-btn px-10 py-5 bg-phab-teal text-phab-dark rounded-full font-bold text-xl hover:bg-phab-cyan transition-all btn-pulse inline-flex items-center gap-3 magnetic-hover">
+                <a href="https://www.getphab.com/collections/all" target="_blank" class="px-10 py-5 bg-phab-teal text-phab-dark rounded-full font-bold text-xl hover:bg-phab-cyan transition-all btn-pulse inline-flex items-center justify-center gap-3">
                     Shop All Products
                     <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
                 </a>
-                <button onclick="openWhatsApp()" class="magnetic-btn px-10 py-5 border-2 border-phab-teal text-phab-teal rounded-full font-bold text-xl hover:bg-phab-teal hover:text-phab-dark transition-all inline-flex items-center gap-3 magnetic-hover">
+                <button onclick="openWhatsApp()" class="px-10 py-5 border-2 border-phab-teal text-phab-teal rounded-full font-bold text-xl hover:bg-phab-teal hover:text-phab-dark transition-all inline-flex items-center justify-center gap-3">
                     <i data-lucide="message-circle" class="w-6 h-6"></i>
                     WhatsApp Order
                 </button>
@@ -935,7 +890,7 @@
             <div class="flex items-center justify-center gap-8 mt-12 text-sm text-gray-500 flex-wrap">
                 <div class="flex items-center gap-2">
                     <i data-lucide="truck" class="w-4 h-4"></i>
-                    Free Shipping ₹499+
+                    Free Shipping Rs.499+
                 </div>
                 <div class="flex items-center gap-2">
                     <i data-lucide="shield-check" class="w-4 h-4"></i>
@@ -1011,18 +966,18 @@
                              alt="Phab Logo" class="w-10 h-10 rounded-xl object-cover">
                         <span class="text-2xl font-bold">phab</span>
                     </div>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">India's tastiest protein. Built with nostalgia, backed by science. Founded by Gayatri Chona.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Indias tastiest protein. Built with nostalgia, backed by science. Founded by Gayatri Chona.</p>
                     <div class="flex gap-3">
-                        <a href="https://instagram.com/getphab" target="_blank" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-phab-teal hover:text-phab-dark transition-all magnetic-hover">
+                        <a href="https://instagram.com/getphab" target="_blank" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-phab-teal hover:text-phab-dark transition-all">
                             <i data-lucide="instagram" class="w-5 h-5"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-phab-teal hover:text-phab-dark transition-all magnetic-hover">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-phab-teal hover:text-phab-dark transition-all">
                             <i data-lucide="youtube" class="w-5 h-5"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-phab-teal hover:text-phab-dark transition-all magnetic-hover">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-phab-teal hover:text-phab-dark transition-all">
                             <i data-lucide="facebook" class="w-5 h-5"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-phab-teal hover:text-phab-dark transition-all magnetic-hover">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center hover:bg-phab-teal hover:text-phab-dark transition-all">
                             <i data-lucide="linkedin" class="w-5 h-5"></i>
                         </a>
                     </div>
@@ -1074,7 +1029,7 @@
             </div>
 
             <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-sm text-gray-500">© 2026 Phab Nutrition Pvt. Ltd. All rights reserved.</p>
+                <p class="text-sm text-gray-500">2026 Phab Nutrition Pvt. Ltd. All rights reserved.</p>
                 <div class="flex gap-6 text-sm text-gray-500">
                     <a href="https://www.getphab.com/pages/privacy-policy" target="_blank" class="hover:text-phab-teal transition-colors">Privacy Policy</a>
                     <a href="https://www.getphab.com/pages/terms-and-conditions" target="_blank" class="hover:text-phab-teal transition-colors">Terms</a>
@@ -1085,9 +1040,9 @@
     </footer>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/919099667422?text=Hi%20Phab!%20I'm%20interested%20in%20ordering%20your%20protein%20products.%20Can%20you%20help%20me%20choose?" 
+    <a href="https://wa.me/919099667422?text=Hi%20Phab!%20I%27m%20interested%20in%20ordering%20your%20protein%20products.%20Can%20you%20help%20me%20choose?" 
        target="_blank"
-       class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform btn-pulse magnetic-hover"
+       class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform btn-pulse"
        title="Chat on WhatsApp">
         <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
     </a>
@@ -1115,94 +1070,28 @@
             <span id="toast-message">Added to cart!</span>
         </div>
     </div>
-
     <!-- JavaScript -->
     <script>
-        // ===== LENIS SMOOTH SCROLL =====
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-            mouseMultiplier: 1,
-            smoothTouch: false,
-            touchMultiplier: 2,
-            infinite: false,
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        // GSAP ScrollTrigger integration with Lenis
-        lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => {
-            lenis.raf(time * 1000);
-        });
-        gsap.ticker.lagSmoothing(0);
-
         // ===== LOADING SCREEN =====
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             const loaderBar = document.getElementById('loader-bar');
             
-            gsap.to(loaderBar, {
-                width: '100%',
-                duration: 1.5,
-                ease: 'power2.inOut',
-                onComplete: () => {
-                    gsap.to(loader, {
-                        opacity: 0,
-                        duration: 0.8,
-                        onComplete: () => {
-                            loader.classList.add('hidden');
-                            initAnimations();
-                        }
-                    });
+            if (loaderBar) {
+                loaderBar.style.width = '100%';
+                loaderBar.style.transition = 'width 1.5s ease-in-out';
+            }
+            
+            setTimeout(() => {
+                if (loader) {
+                    loader.style.opacity = '0';
+                    loader.style.visibility = 'hidden';
+                    setTimeout(() => {
+                        loader.classList.add('hidden');
+                        initAnimations();
+                    }, 800);
                 }
-            });
-        });
-
-        // ===== CUSTOM CURSOR =====
-        const cursor = document.getElementById('cursor');
-        const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
-
-        if (!isTouchDevice && cursor) {
-            document.addEventListener('mousemove', (e) => {
-                gsap.to(cursor, {
-                    x: e.clientX - 10,
-                    y: e.clientY - 10,
-                    duration: 0.1
-                });
-            });
-
-            document.querySelectorAll('.magnetic-hover, a, button').forEach(el => {
-                el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-                el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-            });
-        } else if (cursor) {
-            cursor.style.display = 'none';
-        }
-
-        // ===== MAGNETIC BUTTONS =====
-        document.querySelectorAll('.magnetic-btn').forEach(btn => {
-            btn.addEventListener('mousemove', (e) => {
-                const rect = btn.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                gsap.to(btn, {
-                    x: x * 0.3,
-                    y: y * 0.3,
-                    duration: 0.3,
-                    ease: 'power2.out'
-                });
-            });
-            btn.addEventListener('mouseleave', () => {
-                gsap.to(btn, { x: 0, y: 0, duration: 0.3, ease: 'power2.out' });
-            });
+            }, 1800);
         });
 
         // ===== NAVBAR SCROLL =====
@@ -1223,149 +1112,40 @@
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
 
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // ===== GSAP ANIMATIONS =====
-        function initAnimations() {
-            // Hero text reveal
-            gsap.from('.reveal-section', {
-                y: 60,
-                opacity: 0,
-                duration: 1,
-                stagger: 0.15,
-                ease: 'power3.out',
-                delay: 0.3
-            });
-
-            // Scroll-triggered reveals
-            gsap.utils.toArray('.reveal-section').forEach(section => {
-                gsap.to(section, {
-                    scrollTrigger: {
-                        trigger: section,
-                        start: 'top 85%',
-                        toggleActions: 'play none none reverse'
-                    },
-                    y: 0,
-                    opacity: 1,
-                    duration: 0.8,
-                    ease: 'power3.out'
-                });
-            });
-
-            // Parallax for hero image
-            gsap.to('.product-img', {
-                scrollTrigger: {
-                    trigger: '#hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: true
-                },
-                y: 100,
-                ease: 'none'
-            });
-
-            // Product cards stagger
-            gsap.from('.product-card', {
-                scrollTrigger: {
-                    trigger: '#product-grid',
-                    start: 'top 80%'
-                },
-                y: 80,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.1,
-                ease: 'power3.out'
-            });
-
-            // Tilt cards effect
-            document.querySelectorAll('.tilt-card').forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = (e.clientX - rect.left) / rect.width - 0.5;
-                    const y = (e.clientY - rect.top) / rect.height - 0.5;
-                    gsap.to(card, {
-                        rotateY: x * 10,
-                        rotateX: -y * 10,
-                        duration: 0.5,
-                        ease: 'power2.out'
-                    });
-                });
-                card.addEventListener('mouseleave', () => {
-                    gsap.to(card, {
-                        rotateY: 0,
-                        rotateX: 0,
-                        duration: 0.5,
-                        ease: 'power2.out'
-                    });
-                });
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
             });
         }
 
-        // ===== WEBGL BACKGROUND =====
-        (function initWebGL() {
-            const canvas = document.getElementById('webgl-bg');
-            if (!canvas) return;
-
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        // ===== SCROLL REVEAL ANIMATIONS =====
+        function initAnimations() {
+            const revealSections = document.querySelectorAll('.reveal-section');
             
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-            // Create floating particles
-            const particlesGeometry = new THREE.BufferGeometry();
-            const particlesCount = 200;
-            const posArray = new Float32Array(particlesCount * 3);
-
-            for (let i = 0; i < particlesCount * 3; i++) {
-                posArray[i] = (Math.random() - 0.5) * 10;
-            }
-
-            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-
-            const particlesMaterial = new THREE.PointsMaterial({
-                size: 0.02,
-                color: 0x1BA3A3,
-                transparent: true,
-                opacity: 0.6,
-                blending: THREE.AdditiveBlending
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
             });
 
-            const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-            scene.add(particlesMesh);
-
-            camera.position.z = 3;
-
-            let mouseX = 0;
-            let mouseY = 0;
-
-            document.addEventListener('mousemove', (e) => {
-                mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-                mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+            revealSections.forEach(section => {
+                observer.observe(section);
             });
 
-            function animate() {
-                requestAnimationFrame(animate);
-
-                particlesMesh.rotation.x += 0.0005;
-                particlesMesh.rotation.y += 0.0005;
-
-                particlesMesh.rotation.x += mouseY * 0.0005;
-                particlesMesh.rotation.y += mouseX * 0.0005;
-
-                renderer.render(scene, camera);
-            }
-            animate();
-
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
+            // Hero animations on load
+            const heroSections = document.querySelectorAll('#hero .reveal-section');
+            heroSections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.classList.add('visible');
+                }, 300 + (index * 150));
             });
-        })();
+        }
 
         // ===== CATEGORY FILTERING =====
         const categoryBtns = document.querySelectorAll('.category-btn');
@@ -1380,21 +1160,17 @@
 
                 productCards.forEach(card => {
                     if (category === 'all' || card.dataset.category === category) {
-                        gsap.to(card, {
-                            opacity: 1,
-                            scale: 1,
-                            duration: 0.4,
-                            display: 'block'
-                        });
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 50);
                     } else {
-                        gsap.to(card, {
-                            opacity: 0,
-                            scale: 0.8,
-                            duration: 0.4,
-                            onComplete: () => {
-                                card.style.display = 'none';
-                            }
-                        });
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 400);
                     }
                 });
             });
@@ -1411,7 +1187,7 @@
                 cart.push({ name, price, image, quantity: 1 });
             }
             updateCartUI();
-            showToast(`${name} added to cart!`);
+            showToast(name + ' added to cart!');
         }
 
         function removeFromCart(name) {
@@ -1440,58 +1216,68 @@
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-            cartCount.textContent = totalItems;
+            if (cartCount) cartCount.textContent = totalItems;
 
             if (cart.length === 0) {
-                cartItems.innerHTML = `
-                    <div class="text-center text-gray-500 py-12">
-                        <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto mb-4 opacity-30"></i>
-                        <p>Your cart is empty</p>
-                        <button onclick="toggleCart(); scrollToProducts()" class="mt-4 text-phab-teal font-semibold hover:underline">Start Shopping</button>
-                    </div>
-                `;
-                cartFooter.style.display = 'none';
+                if (cartItems) {
+                    cartItems.innerHTML = `
+                        <div class="text-center text-gray-500 py-12">
+                            <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto mb-4 opacity-30"></i>
+                            <p>Your cart is empty</p>
+                            <button onclick="toggleCart(); scrollToProducts()" class="mt-4 text-phab-teal font-semibold hover:underline">Start Shopping</button>
+                        </div>
+                    `;
+                }
+                if (cartFooter) cartFooter.style.display = 'none';
             } else {
-                cartItems.innerHTML = cart.map(item => `
-                    <div class="flex gap-4 items-center p-4 rounded-xl bg-gray-900/50 border border-gray-800">
-                        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain rounded-lg bg-gray-800" onerror="this.src='https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=100&h=100&fit=crop'">
-                        <div class="flex-1">
-                            <h4 class="font-semibold text-sm">${item.name}</h4>
-                            <p class="text-phab-teal font-bold">₹${item.price}</p>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button onclick="updateQuantity('${item.name}', -1)" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition-colors">
-                                <i data-lucide="minus" class="w-4 h-4"></i>
+                if (cartItems) {
+                    cartItems.innerHTML = cart.map(item => `
+                        <div class="flex gap-4 items-center p-4 rounded-xl bg-gray-900/50 border border-gray-800">
+                            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain rounded-lg bg-gray-800" onerror="this.src='https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=100&h=100&fit=crop'">
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-sm">${item.name}</h4>
+                                <p class="text-phab-teal font-bold">Rs.${item.price}</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="updateQuantity('${item.name}', -1)" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition-colors">
+                                    <i data-lucide="minus" class="w-4 h-4"></i>
+                                </button>
+                                <span class="w-8 text-center font-bold">${item.quantity}</span>
+                                <button onclick="updateQuantity('${item.name}', 1)" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition-colors">
+                                    <i data-lucide="plus" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            <button onclick="removeFromCart('${item.name}')" class="text-gray-500 hover:text-phab-coral transition-colors">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
                             </button>
-                            <span class="w-8 text-center font-bold">${item.quantity}</span>
-                            <button onclick="updateQuantity('${item.name}', 1)" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition-colors">
-                                <i data-lucide="plus" class="w-4 h-4"></i>
-                            </button>
                         </div>
-                        <button onclick="removeFromCart('${item.name}')" class="text-gray-500 hover:text-phab-coral transition-colors">
-                            <i data-lucide="trash-2" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                `).join('');
-                cartFooter.style.display = 'block';
-                cartTotal.textContent = `₹${totalPrice}`;
+                    `).join('');
+                }
+                if (cartFooter) {
+                    cartFooter.style.display = 'block';
+                    if (cartTotal) cartTotal.textContent = 'Rs.' + totalPrice;
+                }
             }
 
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         }
 
         function toggleCart() {
             const sidebar = document.getElementById('cart-sidebar');
             const overlay = document.getElementById('cart-overlay');
             
-            if (sidebar.classList.contains('translate-x-full')) {
-                sidebar.classList.remove('translate-x-full');
-                overlay.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            } else {
-                sidebar.classList.add('translate-x-full');
-                overlay.classList.add('hidden');
-                document.body.style.overflow = '';
+            if (sidebar && overlay) {
+                if (sidebar.classList.contains('translate-x-full')) {
+                    sidebar.classList.remove('translate-x-full');
+                    overlay.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    sidebar.classList.add('translate-x-full');
+                    overlay.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
             }
         }
 
@@ -1501,32 +1287,36 @@
                 return;
             }
             
-            const items = cart.map(item => `${item.name} (x${item.quantity})`).join(', ');
+            const items = cart.map(item => item.name + ' (x' + item.quantity + ')').join(', ');
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const message = `Hi Phab! I'd like to order: ${items}. Total: ₹${total}. Please confirm my order.`;
+            const message = 'Hi Phab! I would like to order: ' + items + '. Total: Rs.' + total + '. Please confirm my order.';
             
-            window.open(`https://wa.me/919099667422?text=${encodeURIComponent(message)}`, '_blank');
+            window.open('https://wa.me/919099667422?text=' + encodeURIComponent(message), '_blank');
         }
 
         // ===== WHATSAPP ORDER =====
         function openWhatsApp() {
-            const message = "Hi Phab! I'm interested in your protein products. Can you help me choose the best options?";
-            window.open(`https://wa.me/919099667422?text=${encodeURIComponent(message)}`, '_blank');
+            const message = "Hi Phab! I am interested in your protein products. Can you help me choose the best options?";
+            window.open('https://wa.me/919099667422?text=' + encodeURIComponent(message), '_blank');
         }
 
         // ===== VIDEO MODAL =====
         function openVideoModal() {
             const modal = document.getElementById('video-modal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden';
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
         }
 
         function closeVideoModal() {
             const modal = document.getElementById('video-modal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = '';
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
         }
 
         // ===== TOAST NOTIFICATION =====
@@ -1534,17 +1324,21 @@
             const toast = document.getElementById('toast');
             const toastMessage = document.getElementById('toast-message');
             
-            toastMessage.textContent = message;
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            
-            setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
+            if (toastMessage) toastMessage.textContent = message;
+            if (toast) {
+                toast.classList.remove('translate-y-20', 'opacity-0');
+                setTimeout(() => {
+                    toast.classList.add('translate-y-20', 'opacity-0');
+                }, 3000);
+            }
         }
 
         // ===== SCROLL TO PRODUCTS =====
         function scrollToProducts() {
-            lenis.scrollTo('#products', { offset: -80 });
+            const productsSection = document.getElementById('products');
+            if (productsSection) {
+                productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
 
         // ===== NEWSLETTER =====
@@ -1555,11 +1349,17 @@
         }
 
         // ===== INIT LUCIDE ICONS =====
-        lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
 
         // Re-init icons after dynamic content changes
         const observer = new MutationObserver(() => {
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
         });
         observer.observe(document.body, { childList: true, subtree: true });
     </script>
